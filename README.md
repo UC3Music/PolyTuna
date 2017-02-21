@@ -5,7 +5,7 @@ PolyTuna
     
 A polyphonic tuner pedal. 
 
-
+![Logo](doc/img/lots-of-tuna-fish.png)
 
 
 #### Author
