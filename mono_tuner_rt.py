@@ -31,37 +31,7 @@ WIDTH = 2 #bytes de las muestras de audio (16 bits/muestra)
 print('Afinador de un tono en tiempo real')
 
 
-#lectura del wav 
-#TODO (Borrar)
-#cuerdas = read('cuerdas_guitarra.wav')
-#audio = np.array(cuerdas[1], dtype=float)  # leer el audio en formato float
-#audio = np.interp(np.arange(0, len(audio), 44.1), np.arange(0, len(audio)), audio)  # resample a 1000
-
-#Preparacion Pyaudio
-p = pyaudio.PyAudio()
-
-#definicion funcion callback
-
-def callback(in_data, frame_count, time_info, status):
-	#convertir a array numpy
-	audio_data = np.fromstring(in_data, dtype=np.float16)
-	#analizar
-	peak = fft(audio=audio_data)
-	string = comparator(peak=peak)
-	print(string)
-	#reproduce el audio de entrada
-	#no seria necesario, pero no se quitarlo y que funcione aun
-	return (in_data, pyaudio.paContinue)
-
-#creacion del stream
-stream = p.open(format=p.get_format_from_width(WIDTH), channels=CHANNELS, rate = FS, output=True, input=True, frames_per_buffer=CHUNK_SIZE, stream_callback=callback)
-
-stream.start_stream()
-
-
-time.sleep(10)
-stream.close()
-
+#FFT
 def fft(audio):
 	#FFT
 	fft = np.abs(np.fft.fftshift(np.fft.fft(audio, FS)))
@@ -85,6 +55,21 @@ def fft(audio):
             		break
 	return peak
 
+#definicion funcion callback
+def callback(in_data, frame_count, time_info, status):
+	#convertir a array numpy
+	audio_data = np.fromstring(in_data, dtype=np.float16)
+	#analizar
+	peak = fft(audio=audio_data)
+	string = comparator(peak=peak)
+	print(string)
+	#reproduce el audio de entrada
+	#no seria necesario, pero no se quitarlo y que funcione aun
+	return (in_data, pyaudio.paContinue)
+
+
+#comparators
+
 def comparator(peak):
 	#comparacion del pico con los valores de referencia
 
@@ -96,4 +81,25 @@ def comparator(peak):
 	E_dev = E_FREQ-peak
 
 	return string
+
+
+#lectura del wav 
+#TODO (Borrar)
+#cuerdas = read('cuerdas_guitarra.wav')
+#audio = np.array(cuerdas[1], dtype=float)  # leer el audio en formato float
+#audio = np.interp(np.arange(0, len(audio), 44.1), np.arange(0, len(audio)), audio)  # resample a 1000
+
+#Preparacion Pyaudio
+p = pyaudio.PyAudio()
+
+
+#creacion del stream
+stream = p.open(format=p.get_format_from_width(WIDTH), channels=CHANNELS, rate = FS, output=True, input=True, frames_per_buffer=CHUNK_SIZE, stream_callback=callback)
+
+stream.start_stream()
+
+
+time.sleep(10)
+stream.close()
+
 
