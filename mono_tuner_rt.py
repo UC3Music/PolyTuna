@@ -20,7 +20,7 @@ E_FREQ = 82
 # Constantes para Pyaudio
 
 THRESHOLD = 100  # valor minimo a leer
-THRESHOLD2 = 200
+THRESHOLD2 = 50
 CHUNK_SIZE = 4410  # trozos de 0.1 segundo
 # TODO ver si funciona con trozos tan grandes o si es necesario usar trozos de 1024 muestras
 FORMAT = pyaudio.paInt16
@@ -60,12 +60,11 @@ def fft_func(audio):
 # definicion funcion callback
 def callback(in_data, frame_count, time_info, status):
 	# convertir a array numpy
-	audio_data = np.fromstring(in_data, dtype=np.float16)
+	audio_data = np.fromstring(in_data, dtype=np.int16)
 	# analizar
 	# audio_data = np.where(audio_data < THRESHOLD, 0, audio_data)
 	peak = fft_func(audio=audio_data)
 	string = comparator(peak=peak)
-	print("->", peak)
 	# reproduce el audio de entrada
 	# no seria necesario, pero no se quitarlo y que funcione aun
 	return (in_data, pyaudio.paContinue)
