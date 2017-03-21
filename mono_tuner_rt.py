@@ -16,7 +16,7 @@ G_FREQ = 196
 D_FREQ = 147
 A_FREQ = 110
 E_FREQ = 82
-
+STRINGS = ['he', 'b', 'g', 'd', 'a', 'E']
 # Constantes para Pyaudio
 
 THRESHOLD = 100  # valor minimo a leer
@@ -52,7 +52,7 @@ def fft_func(audio):
 	for e in range(1, len(fft) - 1):
 		if fft[e - 1] < fft[e] and fft[e + 1] < fft[e]:
 			peak = fft_freqs[e]
-			print(peak)
+			
 			break
 	return peak
 
@@ -64,7 +64,9 @@ def callback(in_data, frame_count, time_info, status):
 	# analizar
 	# audio_data = np.where(audio_data < THRESHOLD, 0, audio_data)
 	peak = fft_func(audio=audio_data)
-	string = comparator(peak=peak)
+	string_name, string_status = comparator(peak=peak)
+	print(peak,' ',string_name,' ',string_status,'\n')
+	
 	# reproduce el audio de entrada
 	# no seria necesario, pero no se quitarlo y que funcione aun
 	return (in_data, pyaudio.paContinue)
@@ -81,8 +83,19 @@ def comparator(peak):
 	d_dev = D_FREQ - peak
 	a_dev = A_FREQ - peak
 	E_dev = E_FREQ - peak
-
-	return ''
+	
+	devs =[he_dev, b_dev, g_dev, d_dev, a_dev, E_dev]
+	
+	min_string = np.argmin(np.abs(devs))
+	
+	if devs[min_string]>0:
+		flat_or_high = '>'
+	elif devs[min_string]<0:
+		flat_or_high = '<'
+	elif devs[min_string]==0:
+		flat_or_high = '-'
+	
+	return STRINGS[min_string], flat_or_high
 
 
 # lectura del wav
