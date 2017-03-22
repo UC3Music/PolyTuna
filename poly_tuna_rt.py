@@ -85,8 +85,8 @@ def callback(in_data, frame_count, time_info, status):
 	# audio_data = np.where(audio_data < THRESHOLD, 0, audio_data)
 	peaks = fft_func(audio=audio_data)
 	string_status = comparator(peaks=peaks)
-	for k in range(0,len(peaks)):
-		print(peaks[k],' ',STRINGS[k],' ',string_status[k],'')
+	for peak, string, status in zip(peaks, STRINGS, string_status):
+		print(peak, ' ', string,' ', status, '')
 	print('\n')
 	# reproduce el audio de entrada
 	# no seria necesario, pero no se quitarlo y que funcione aun
@@ -111,7 +111,7 @@ def comparator(peaks):
 	string_status=['','','','','','']
 	
 	for i in range(0,len(devs)):
-		print(i)
+		# print(i)
 		if devs[i]>0:
 			string_status[i] = '>'
 		elif devs[i]<0:
@@ -119,7 +119,7 @@ def comparator(peaks):
 		elif devs[i]==0:
 			string_status[i] = '-'
 	
-	return string_status[i]
+	return string_status
 
 
 # lectura del wav
