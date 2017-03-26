@@ -56,25 +56,26 @@ def fft_func(audio):
 	#asi que nos sirve el metodo np.argmax()
 	#se solapan un poco, para tener mas margen... si la guitarra esta tan desafinada como para que eso sea un problema, cuidala mas, tronco...
 	
-	E_peak = np.argmax(fft[1:100]);
+	E_peak = np.argmax(fft[20:100]);
+	E_peak = E_peak +19;
 
 	a_peak = np.argmax(fft[95:130]);
 	a_peak = a_peak + 94;
 
-	d_peak = np.argmax(fft[125:175]);
+	d_peak = np.argmax(fft[125:155]);
 	d_peak = d_peak + 124;
 
 	g_peak = np.argmax(fft[170:210]);
 	g_peak = g_peak + 169;
 
-	b_peak = np.argmax(fft[200:300]);
-	b_peak = b_peak + 199;
+	b_peak = np.argmax(fft[220:300]);
+	b_peak = b_peak + 219;
 
-	he_peak = np.argmax(fft[300:500]);
+	he_peak = np.argmax(fft[300:450]);
 	he_peak = he_peak + 299;
 	
 	peaks = [he_peak, b_peak, g_peak, d_peak, a_peak, E_peak]
-	print(peaks)
+	
 	return peaks
 
 # definicion funcion callback
@@ -86,8 +87,11 @@ def callback(in_data, frame_count, time_info, status):
 	peaks = fft_func(audio=audio_data)
 	string_status = comparator(peaks=peaks)
 	for peak, string, status in zip(peaks, STRINGS, string_status):
-		print(peak, ' ', string,' ', status, '')
+		print(peak, ' ', string,' ', status, end=' || ')
+	
 	print('\n')
+
+	
 	# reproduce el audio de entrada
 	# no seria necesario, pero no se quitarlo y que funcione aun
 	return (in_data, pyaudio.paContinue)
@@ -107,7 +111,7 @@ def comparator(peaks):
 	E_dev = E_FREQ - peaks[5]
 	
 	devs =[he_dev, b_dev, g_dev, d_dev, a_dev, E_dev]
-	print(devs)
+	
 	string_status=['','','','','','']
 	
 	for i in range(0,len(devs)):
