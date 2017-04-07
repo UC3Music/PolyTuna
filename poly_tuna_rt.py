@@ -11,12 +11,12 @@ import sys
 FS = 44100  # frecuencia de muestreo
 
 # Frecuencias de referencia
-HE_FREQ = 330
-B_FREQ = 247
-G_FREQ = 196
-D_FREQ = 147
-A_FREQ = 110
-E_FREQ = 82
+HE_FREQ = 329.63
+B_FREQ = 246.94
+G_FREQ = 196.00
+D_FREQ = 146.83
+A_FREQ = 110.00
+E_FREQ = 82.41
 STRINGS = ['he', 'b', 'g', 'd', 'a', 'E']
 # Constantes para Pyaudio
 
