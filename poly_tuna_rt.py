@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from builtins import print
 from scipy.io.wavfile import read
 from scipy.signal import find_peaks_cwt as findpeaks
+from scipy.interpolate import lagrange
 import time
 import pyaudio
 import sys
@@ -56,27 +57,61 @@ def fft_func(audio):
 	#asi que nos sirve el metodo np.argmax()
 	#se solapan un poco, para tener mas margen... si la guitarra esta tan desafinada como para que eso sea un problema, cuidala mas, tronco...
 	
+	
+
 	E_peak = np.argmax(fft[20:100]);
 	E_peak = E_peak +19;
+	
+	E_peak = pol_interpolation(E_peak,fft)
 
 	a_peak = np.argmax(fft[95:130]);
 	a_peak = a_peak + 94;
-
+	
+	a_peak = pol_interpolation(a_peak,fft)
+	
 	d_peak = np.argmax(fft[125:155]);
 	d_peak = d_peak + 124;
+
+	d_peak = pol_interpolation(d_peak,fft)
 
 	g_peak = np.argmax(fft[170:210]);
 	g_peak = g_peak + 169;
 
+	g_peak = pol_interpolation(g_peak,fft)
+
 	b_peak = np.argmax(fft[220:300]);
 	b_peak = b_peak + 219;
+
+	b_peak = pol_interpolation(b_peak,fft)
 
 	he_peak = np.argmax(fft[300:450]);
 	he_peak = he_peak + 299;
 	
+	he_peak = pol_interpolation(he_peak,fft)
+
 	peaks = [he_peak, b_peak, g_peak, d_peak, a_peak, E_peak]
-	
+		
+
+
+
 	return peaks
+
+# definition function interpolation
+def pol_interpolation(x1,fft):
+	#store the 
+	x2 = x1+1
+	x0 = x1-1
+	
+	y0 = fft[x0]
+	y1 = fft[x1]
+	y2 = fft[x2]
+
+	l = lagrange([x0, x1, x2], [y0, y1, y2])
+	x=np.linspace(x0,x2,200)
+	new_peak = x0 + (np.argmax(l(x)))/100
+	return new_peak
+	
+	
 
 # definicion funcion callback
 def callback(in_data, frame_count, time_info, status):
@@ -87,7 +122,7 @@ def callback(in_data, frame_count, time_info, status):
 	peaks = fft_func(audio=audio_data)
 	string_status = comparator(peaks=peaks)
 	for peak, string, status in zip(peaks, STRINGS, string_status):
-		print(peak, ' ', string,' ', status, end=' || ')
+		print('{:6.2f}'.format(peak), ' ', string,' ', status, end=' || ')
 	
 	print('\n')
 
