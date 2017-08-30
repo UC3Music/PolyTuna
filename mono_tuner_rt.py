@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from builtins import print
 from scipy.io.wavfile import read
 from scipy.signal import find_peaks_cwt as findpeaks

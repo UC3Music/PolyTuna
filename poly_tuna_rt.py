@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from builtins import print
 from scipy.io.wavfile import read
 from scipy.signal import find_peaks_cwt as findpeaks
@@ -11,8 +10,8 @@ import sys
 FS = 44100  # frecuencia de muestreo
 
 # Frecuencias de referencia
-HE_FREQ = 329.63
-B_FREQ = 246.94
+HE_FREQ = 329.63 #988.89
+B_FREQ = 246.94 #740.82
 G_FREQ = 196.00
 D_FREQ = 146.83
 A_FREQ = 110.00
@@ -20,14 +19,12 @@ E_FREQ = 82.41
 STRINGS = ['he', 'b', 'g', 'd', 'a', 'E']
 # Constantes para Pyaudio
 
-THRESHOLD = 100  # valor minimo a leer
-THRESHOLD2 = 50
+THRESHOLD = 50  # valor minimo a leer
 CHUNK_SIZE = 4410  # trozos de 0.1 segundo
-# TODO ver si funciona con trozos tan grandes o si es necesario usar trozos de 1024 muestras
 FORMAT = pyaudio.paInt16
 CHANNELS = 1  # canales a leer (mono)
 WIDTH = 2  # bytes de las muestras de audio (16 bits/muestra)
-# TODO se podria reducir?
+
 
 # inicio del programa
 print('Afinador de un tono en tiempo real')
@@ -45,49 +42,54 @@ def fft_func(audio):
 	fft = fft[int(len(fft) / 2):]
 	fft_freqs = fft_freqs[int(len(fft_freqs) / 2):]
 
-	#ESTO EN EL MODO POLI NO DEBERIA HACER FALTA POR COMO SE BUSCA EL MAXIMO
-	# eliminacion de los valores bajos para encontrar el pico facilmente
-	#for e in range(len(fft)):
-	#	if THRESHOLD2 > fft[e]: 
-	#		fft[e] = 0
+	# eliminacion de los valores bajos para encontrar el pico facilmente y para evitar detecciones aleatorias
+	for e in range(len(fft)):
+		if THRESHOLD > fft[e]: 
+			fft[e] = 0
 
 
 	# busqueda del pico en cada rango de frecuencias
 	#los margenes estan cogidos para que el pico de la frecuencia sea el  máximo en ese rango
 	#asi que nos sirve el metodo np.argmax()
-	#se solapan un poco, para tener mas margen... si la guitarra esta tan desafinada como para que eso sea un problema, cuidala mas, tronco...
+	#se solapan un poco, para tener mas margen... 
 	
 	
 
 	E_peak = np.argmax(fft[20:100]);
-	E_peak = E_peak +19;
 	
-	E_peak = pol_interpolation(E_peak,fft)
+	if fft[E_peak]>0:
+		E_peak = E_peak +19;
+		E_peak = pol_interpolation(E_peak,fft)
 
 	a_peak = np.argmax(fft[95:130]);
-	a_peak = a_peak + 94;
 	
-	a_peak = pol_interpolation(a_peak,fft)
+	if fft[a_peak]>0:	
+		a_peak = a_peak + 94;	
+		a_peak = pol_interpolation(a_peak,fft)
 	
 	d_peak = np.argmax(fft[125:155]);
-	d_peak = d_peak + 124;
-
-	d_peak = pol_interpolation(d_peak,fft)
+	
+	if fft[d_peak]>0:
+		d_peak = d_peak + 124;
+		d_peak = pol_interpolation(d_peak,fft)
 
 	g_peak = np.argmax(fft[170:210]);
-	g_peak = g_peak + 169;
 
-	g_peak = pol_interpolation(g_peak,fft)
+	if fft[g_peak]>0:	
+		g_peak = g_peak + 169;
+		g_peak = pol_interpolation(g_peak,fft)
 
-	b_peak = np.argmax(fft[220:300]);
-	b_peak = b_peak + 219;
+	b_peak = np.argmax(fft[660:770]);#220:300
 
-	b_peak = pol_interpolation(b_peak,fft)
+	if fft[b_peak]>0:
+		b_peak = b_peak + 219;
+		b_peak = pol_interpolation(b_peak,fft)
 
-	he_peak = np.argmax(fft[300:450]);
-	he_peak = he_peak + 299;
-	
-	he_peak = pol_interpolation(he_peak,fft)
+	he_peak = np.argmax(fft[900:1150]);#300:450
+		
+	if fft[he_peak]>0:
+		he_peak = he_peak + 299;
+		he_peak = pol_interpolation(he_peak,fft)
 
 	peaks = [he_peak, b_peak, g_peak, d_peak, a_peak, E_peak]
 		
@@ -159,13 +161,6 @@ def comparator(peaks):
 			string_status[i] = '-'
 	
 	return string_status
-
-
-# lectura del wav
-# TODO (Borrar)
-# cuerdas = read('cuerdas_guitarra.wav')
-# audio = np.array(cuerdas[1], dtype=float)  # leer el audio en formato float
-# audio = np.interp(np.arange(0, len(audio), 44.1), np.arange(0, len(audio)), audio)  # resample a 1000
 
 # Preparacion Pyaudio
 p = pyaudio.PyAudio()
