@@ -19,10 +19,12 @@ A polyphonic tuner pedal.
     
 *  [David Estévez Fernández](https://github.com/David-Estevez)
 
-###Teensy Edition Libraries information
+### Teensy Edition Libraries information
 
 * In order to get Polytuna fully working in Teensy, it's needed to overwrite these files with the ones included in the folder "Polytuna Teensy Edition":
+
 	******TO AVOID FUTURE PROBLEMS, SAVE THE ORIGINAL FILES BEFORE OVERWRITING ANYTHING.******
+	
 	* "AudioStream.h" --> "(Arduino installation folder)\Arduino\hardware\teensy\avr\cores\teensy3"
 	* "output_i2s.cpp" --> "(Arduino installation folder)\Arduino\hardware\teensy\avr\libraries\Audio" 
 	
