@@ -27,8 +27,9 @@ A polyphonic tuner pedal.
 	
 	* "AudioStream.h" --> "(Arduino installation folder)\Arduino\hardware\teensy\avr\cores\teensy3" (Windows based systems)
 			     
-			     "(Arduino installation folder)/Arduino/hardware/teensy/avr/cores/teensy3" (Linux based systems)
+			* "(Arduino installation folder)/Arduino/hardware/teensy/avr/cores/teensy3" (Linux based systems)
 	* "output_i2s.cpp" --> "(Arduino installation folder)\Arduino\hardware\teensy\avr\libraries\Audio" (Windows based systems)
 				
-				"(Arduino installation folder)/Arduino/hardware/teensy/avr/libraries/Audio" (Linux based systems)
-    These files ensure the sampling frequency is 8kHz instead of the 44.1kHz standard in Teensy to ge a more precise FFT.
+			* "(Arduino installation folder)/Arduino/hardware/teensy/avr/libraries/Audio" (Linux based systems)
+			
+These files ensure the sampling frequency is 8kHz instead of the 44.1kHz standard in Teensy to ge a more precise FFT.
