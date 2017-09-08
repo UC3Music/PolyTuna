@@ -21,11 +21,10 @@ STRINGS = ['he', 'b', 'g', 'd', 'a', 'E']
 THRESHOLD = 100  # valor minimo a leer
 THRESHOLD2 = 50
 CHUNK_SIZE = 4410  # trozos de 0.1 segundo
-# TODO ver si funciona con trozos tan grandes o si es necesario usar trozos de 1024 muestras
 FORMAT = pyaudio.paInt16
 CHANNELS = 1  # canales a leer (mono)
 WIDTH = 2  # bytes de las muestras de audio (16 bits/muestra)
-# TODO se podria reducir?
+
 
 # inicio del programa
 print('Afinador de un tono en tiempo real')
@@ -62,9 +61,15 @@ def callback(in_data, frame_count, time_info, status):
 	audio_data = np.fromstring(in_data, dtype=np.int16)
 	# analizar
 	# audio_data = np.where(audio_data < THRESHOLD, 0, audio_data)
+
+	#COMIENZO DEL PERIODO DE TIEMPO A MEDIR
+	tiempo_inicial = time.time()
 	peak = fft_func(audio=audio_data)
 	string_name, string_status = comparator(peak=peak)
-	print(peak,' ',string_name,' ',string_status,'\n')
+	tiempo_final = time.time()
+	#FIN DEL PERIODO DE TIEMPO A MEDIR
+	tiempo_ejecucion = tiempo_final - tiempo_inicial
+	print(peak,' ',string_name,' ',string_status,'  Exec time: ', tiempo_ejecucion,'\n')
 	
 	# reproduce el audio de entrada
 	# no seria necesario, pero no se quitarlo y que funcione aun
@@ -96,12 +101,6 @@ def comparator(peak):
 	
 	return STRINGS[min_string], flat_or_high
 
-
-# lectura del wav
-# TODO (Borrar)
-# cuerdas = read('cuerdas_guitarra.wav')
-# audio = np.array(cuerdas[1], dtype=float)  # leer el audio en formato float
-# audio = np.interp(np.arange(0, len(audio), 44.1), np.arange(0, len(audio)), audio)  # resample a 1000
 
 # Preparacion Pyaudio
 p = pyaudio.PyAudio()

@@ -49,46 +49,42 @@ def fft_func(audio):
 
 
 	# busqueda del pico en cada rango de frecuencias
-	#los margenes estan cogidos para que el pico de la frecuencia sea el  máximo en ese rango
-	#asi que nos sirve el metodo np.argmax()
-	#se solapan un poco, para tener mas margen... 
-	
-	
+		
 
-	E_peak = np.argmax(fft[20:100]);
+	E_peak = np.argmax(fft[71:95]);
 	
 	if fft[E_peak]>0:
-		E_peak = E_peak +19;
+		E_peak = E_peak +70;
 		E_peak = pol_interpolation(E_peak,fft)
 
-	a_peak = np.argmax(fft[95:130]);
+	a_peak = np.argmax(fft[95:127]);
 	
 	if fft[a_peak]>0:	
 		a_peak = a_peak + 94;	
 		a_peak = pol_interpolation(a_peak,fft)
 	
-	d_peak = np.argmax(fft[125:155]);
+	d_peak = np.argmax(fft[127:155]);
 	
 	if fft[d_peak]>0:
-		d_peak = d_peak + 124;
+		d_peak = d_peak + 126;
 		d_peak = pol_interpolation(d_peak,fft)
 
-	g_peak = np.argmax(fft[170:210]);
+	g_peak = np.argmax(fft[169:226]);
 
 	if fft[g_peak]>0:	
-		g_peak = g_peak + 169;
+		g_peak = g_peak + 168;
 		g_peak = pol_interpolation(g_peak,fft)
 
-	b_peak = np.argmax(fft[660:770]);#220:300
+	b_peak = np.argmax(fft[699:855]);#220:300
 
 	if fft[b_peak]>0:
-		b_peak = b_peak + 219;
+		b_peak = b_peak + 698;
 		b_peak = pol_interpolation(b_peak,fft)
 
-	he_peak = np.argmax(fft[900:1150]);#300:450
+	he_peak = np.argmax(fft[855:1142]);#300:450
 		
 	if fft[he_peak]>0:
-		he_peak = he_peak + 299;
+		he_peak = he_peak + 854;
 		he_peak = pol_interpolation(he_peak,fft)
 
 	peaks = [he_peak, b_peak, g_peak, d_peak, a_peak, E_peak]
