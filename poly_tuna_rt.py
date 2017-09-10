@@ -10,12 +10,12 @@ import sys
 FS = 44100  # frecuencia de muestreo
 
 # Frecuencias de referencia
-HE_FREQ = 329.63 #988.89
-B_FREQ = 246.94 #740.82
-G_FREQ = 196.00
-D_FREQ = 146.83
-A_FREQ = 110.00
-E_FREQ = 82.41
+HE_FREQ = 988.90250#329.63 #988.89
+B_FREQ = 70.81500#246.94 #740.82
+G_FREQ = 195.95750#196.00
+D_FREQ = 146.79500#146.83
+A_FREQ = 109.99750#110.00
+E_FREQ = 81.99750#82.41
 STRINGS = ['he', 'b', 'g', 'd', 'a', 'E']
 # Constantes para Pyaudio
 
@@ -27,7 +27,7 @@ WIDTH = 2  # bytes de las muestras de audio (16 bits/muestra)
 
 
 # inicio del programa
-print('Afinador de un tono en tiempo real')
+print('Afinador polifónico en tiempo real')
 
 
 # FFT
@@ -105,8 +105,8 @@ def pol_interpolation(x1,fft):
 	y2 = fft[x2]
 
 	l = lagrange([x0, x1, x2], [y0, y1, y2])
-	x=np.linspace(x0,x2,200)
-	new_peak = x0 + (np.argmax(l(x)))/100
+	x=np.linspace(x0,x2,800) 
+	new_peak = x0 + (np.argmax(l(x)))/400
 	return new_peak
 	
 	
@@ -120,7 +120,7 @@ def callback(in_data, frame_count, time_info, status):
 	peaks = fft_func(audio=audio_data)
 	string_status = comparator(peaks=peaks)
 	for peak, string, status in zip(peaks, STRINGS, string_status):
-		print('{:6.2f}'.format(peak), ' ', string,' ', status, end=' || ')
+		print('{:12.5f}'.format(peak), ' ', string,' ', status, end=' || ')
 	
 	print('\n')
 
