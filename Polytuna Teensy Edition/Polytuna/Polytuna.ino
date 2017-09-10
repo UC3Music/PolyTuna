@@ -2,6 +2,11 @@
 #include <Wire.h>
 #include <SPI.h>
 #include <SerialFlash.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+//Crear el objeto lcd (pantalla) con  dirección  0x3F y 20 columnas x 4 filas
+LiquidCrystal_I2C lcd(0x3F, 20, 4); //
 
 // GUItool: begin automatically generated code
 AudioInputI2S            i2s1;           //xy=125,201
@@ -17,6 +22,7 @@ AudioConnection          patchCord5(mixer1, fft1024);
 AudioConnection          patchCord6(mixer1, peak1);
 AudioControlSGTL5000     sgtl5000_1;     //xy=302,425
 // GUItool: end automatically generated code
+
 
 //Global Variables
 float Resolution = 7.7917220745;
@@ -35,8 +41,106 @@ float D_peak = 0.0;
 float G_peak = 0.0;
 float B_peak = 0.0;
 float he_peak = 0.0;
-//de momento solo se usa uno hasta que se cambie la frecuencia de muestreo
-//devuelve nivel del bin central si este es un pico. Si no, devuelve 0
+
+//Valores de referencia para afinar
+float HE_REF = 329.63;
+float B_REF = 246.94;
+float G_REF = 196.00;
+float D_REF = 146.83;
+float A_REF = 110.00;
+float E_REF = 82.41;
+
+float REFS[7] = {E_REF, A_REF, D_REF, G_REF, B_REF, HE_REF};
+
+//multiplicadores de notas
+float UP_TONE = 1.0595;
+float UP_20_CENT = 1.0116;
+float UP_50_CENT = 1.0293;
+
+float DOWN_TONE = 0.9439;
+float DOWN_20_CENT = 0.9885;
+float DOWN_50_CENT = 0.9715;
+
+byte high_far_arrow[8] = {
+  B10001,
+  B01010,
+  B00100,
+  B10001,
+  B01010,
+  B00100,
+  B00000,
+  B00000,
+};
+byte high_middle_arrow[8] = {
+  B00000,
+  B00000,
+  B00000,
+  B10001,
+  B01010,
+  B00100,
+  B00000,
+  B00000,
+};
+byte high_almost_arrow[8] = {
+  B00000,
+  B00000,
+  B00000,
+  B00000,
+  B00000,
+  B10001,
+  B01010,
+  B00100,
+};
+byte mid_bar[8] = {
+  B00000,
+  B00000,
+  B00000,
+  B11111,
+  B11111,
+  B00000,
+  B00000,
+  B00000,
+};
+byte just_right[8] = {
+  B00000,
+  B10001,
+  B01010,
+  B00100,
+  B00100,
+  B01010,
+  B10001,
+  B00000,
+};
+byte low_far_arrow[8] = {
+  B00000,
+  B00000,
+  B00100,
+  B01010,
+  B10001,
+  B00100,
+  B01010,
+  B10001,
+};
+byte low_middle_arrow[8] = {
+  B00000,
+  B00000,
+  B00100,
+  B01010,
+  B10001,
+  B00000,
+  B00000,
+  B00000,
+};
+byte low_almost_arrow[8] = {
+  B00100,
+  B01010,
+  B10001,
+  B00000,
+  B00000,
+  B00000,
+  B00000,
+  B00000,
+};
 
 float interpolate(float x0, float x1, float x2, float b0, float b1, float b2) {
   //interpolacion cuadratica por el metodo de lagrange
@@ -50,9 +154,9 @@ float interpolate(float x0, float x1, float x2, float b0, float b1, float b2) {
   float a2 = b2 / ( (x2 - x0) * (x2 - x1) );
 
   //defino el numero de muestras intermedias
-  int sampleN = 1600; //probar valores. A mayor sea, mejor precisión pero peor rendimiento
-  //con 1600 obtenemos un valor cada 0.01 Hz aprox.
-  //resolucion tras interpolar = 2xResolution /sampleN = 0.009739
+  int sampleN = 3200; //probar valores. A mayor sea, mejor precisión pero peor rendimiento
+  //con 3200 obtenemos un valor cada 0.005 Hz aprox.
+  //resolucion tras interpolar = 2xResolution /sampleN = 0.004870
   float xMax = 0.00;
   float pxMax = 0.00;
   for (int i = 0; i < sampleN; i++) {
@@ -93,22 +197,143 @@ float getPeak(int centralBin) {
   return 0;
 }
 
+void static_display() {
+  //imprimir layout basico
+  lcd.setCursor(1, 3);
+  lcd.print("6E 5A 4D  3G 2B 1e");
+  //linea de enmedio
+  lcd.setCursor(0, 1);
+  lcd.write(62);
+  lcd.print(" ");
+  lcd.print(" ");
+  lcd.write(5);
+  lcd.print(" ");
+  lcd.print(" ");
+  lcd.write(5);
+  lcd.print(" ");
+  lcd.print(" ");
+  lcd.write(60);
+
+  lcd.write(62);
+  lcd.print(" ");
+  lcd.print(" ");
+  lcd.write(5);
+  lcd.print(" ");
+  lcd.print(" ");
+  lcd.write(5);
+  lcd.print(" ");
+  lcd.print(" ");
+  lcd.write(60);
+
+}
+
+void tuning_print(float freq_peaks[]) {
+  //j controla la posicion a escribir
+  int j = 1;
+  for (int i = 0; i < 6; i++) {
+    //calculamos los intervalos para las representaciones
+    float ref_up_20 = REFS[i] * UP_20_CENT;
+    float ref_down_20 = REFS[i] * DOWN_20_CENT;
+    //si es menor del tono referencia por mas de 20 cents
+    if (freq_peaks[i] < ref_down_20) {
+      lcd.setCursor(j, 0);
+      lcd.print("  ");
+      lcd.setCursor(j, 1);
+      lcd.print("  ");
+      lcd.setCursor(j, 0);
+      lcd.write(byte(4));
+      lcd.write(byte(4));
+    }
+    //si está entre 20 cents y la referencia
+    else if (freq_peaks[i] < REFS[i]) {
+
+      lcd.setCursor(j, 0);
+      lcd.print("  ");
+      lcd.setCursor(j, 1);
+      lcd.print("  ");
+      lcd.setCursor(j, 0);
+      lcd.write(byte(3));
+      lcd.write(byte(3));
+    }
+    //si es igual a la referencia
+    else if (freq_peaks[i] == REFS[i]) {
+      lcd.setCursor(j, 0);
+      lcd.print("  ");
+      lcd.setCursor(j, 2);
+      lcd.print("  ");
+      lcd.setCursor(j, 1);
+      lcd.write(2);
+      lcd.write(2);
+    }
+    //si es mayor que la referencia +20
+    else if (freq_peaks[i] > ref_up_20) {
+      lcd.setCursor(j, 1);
+      lcd.print("  ");
+      lcd.setCursor(j, 2);
+      lcd.print("  ");
+      lcd.setCursor(j, 0);
+      lcd.write(byte(0));
+      lcd.write(byte(0));
+
+    }
+
+    //si esta entre la referencia y la referencia +20
+    else if (freq_peaks[i] < ref_up_20) {
+      lcd.setCursor(j, 1);
+      lcd.print("  ");
+      lcd.setCursor(j, 2);
+      lcd.print("  ");
+      lcd.setCursor(j, 0);
+      lcd.write(byte(1));
+      lcd.write(byte(1));
+    }
+    //salvamos el espacio extra de enmedio
+    if (j == 7) {
+      j++;
+    }
+    //escribimos en la siguiente posicion
+    j = j + 2;
+
+  }
+}
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   Serial.println("Testing the circuit");
+
+  //configuracion de la placa de audio
   sgtl5000_1.enable();
   sgtl5000_1.inputSelect(AUDIO_INPUT_LINEIN);
-
   AudioMemory(15);
   sgtl5000_1.volume(0.5);
-
-
-
   mixer1.gain(0, 0.5);//habria que ver a que canal se conecta
   mixer1.gain(1, 0.5);
+  //delay porque si
+  delay(500);
 
+
+  // Configuracion del LCD
+
+  //Inicializar el LCD
+  lcd.init();
+
+  //Encender la luz de fondo.
+  lcd.backlight();
+
+  //crear caracteres personalizados
+  lcd.createChar(0, high_far_arrow);
+  //lcd.createChar(1,high_middle_arrow);
+  lcd.createChar(1, high_almost_arrow);
+  lcd.createChar(2, just_right);
+  lcd.createChar(3, low_almost_arrow);
+  //lcd.createChar(6,low_middle_arrow);
+  lcd.createChar(4, low_far_arrow);
+  lcd.createChar(5, mid_bar);
+  //lcd.createChar(8,low_middle_arrow);
+
+  // Escribimos el layout constante en el LCD.
+  static_display();
   delay(500);
 }
 
@@ -134,7 +359,7 @@ void loop() {
           Serial.print("  ");
         }
     */
-    //////////////////// FIND HIGHEST FREQUENCY IN EACH RANGE //////////
+    //////////////////// BUSCAR PICO EN CADA INTERVALO DE BUSQUEDA //////////
     //// E string
     for (centralBin = 2; centralBin <= 12; centralBin++) { //central bin entre: 7.79*3 = 23.37 y 7.79*12 = 93.48
       float aux_peak_lvl = fft1024.read(centralBin);
@@ -188,11 +413,7 @@ void loop() {
       }
     }
     ///////////////////
-    //mono tuner
-    /* if (auxPeakLevel > peakLevel) {
-       peakLevel = auxPeakLevel;
-       peak = centralBin;
-      }*/
+
 
     /////////////////////////// INTERPOLATE ///////////////////////
     //A partir de los bins máximos en cada rango, obtengo el pico por interpolacion
@@ -209,7 +430,9 @@ void loop() {
     //// he string
     float he_freq_peak = interpolate(he_peak - 1, he_peak, he_peak + 1, fft1024.read(he_peak - 1), fft1024.read(he_peak), fft1024.read(he_peak + 1));
 
-//////////////////////////// PRINTING VALUES
+    float freq_peaks_detected [] = {E_freq_peak, A_freq_peak, D_freq_peak, G_freq_peak, B_freq_peak, he_freq_peak};
+
+    //////////////////////////// PRINTING VALUES
     Serial.print(" E -> ");
     Serial.print(E_freq_peak, 2);
     Serial.print("|| A -> ");
@@ -223,6 +446,10 @@ void loop() {
     Serial.print("|| he -> ");
     Serial.println(he_freq_peak, 2);
     //TODO something with the peak
-    delay(100);
+    tuning_print(freq_peaks_detected);
+    delay(85);
   }
 }
+
+
+
