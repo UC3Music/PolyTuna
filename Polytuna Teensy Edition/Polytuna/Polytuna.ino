@@ -229,49 +229,50 @@ void static_display() {
 
 void tuning_print(float freq_peaks[]) {
   //j controla la posicion a escribir
-  int j = 1;
+  int k = 1;
+  
   for (int i = 0; i < 6; i++) {
     //calculamos los intervalos para las representaciones
     float ref_up_20 = REFS[i] * UP_20_CENT;
     float ref_down_20 = REFS[i] * DOWN_20_CENT;
     //si es menor del tono referencia por mas de 20 cents
     if (freq_peaks[i] < ref_down_20) {
-      lcd.setCursor(j, 0);
+      lcd.setCursor(k, 0);
       lcd.print("  ");
-      lcd.setCursor(j, 1);
+      lcd.setCursor(k, 1);
       lcd.print("  ");
-      lcd.setCursor(j, 0);
+      lcd.setCursor(k, 2);
       lcd.write(byte(4));
       lcd.write(byte(4));
     }
     //si está entre 20 cents y la referencia
     else if (freq_peaks[i] < REFS[i]) {
 
-      lcd.setCursor(j, 0);
+      lcd.setCursor(k, 0);
       lcd.print("  ");
-      lcd.setCursor(j, 1);
+      lcd.setCursor(k, 1);
       lcd.print("  ");
-      lcd.setCursor(j, 0);
+      lcd.setCursor(k, 2);
       lcd.write(byte(3));
       lcd.write(byte(3));
     }
     //si es igual a la referencia
     else if (freq_peaks[i] == REFS[i]) {
-      lcd.setCursor(j, 0);
+      lcd.setCursor(k, 0);
       lcd.print("  ");
-      lcd.setCursor(j, 2);
+      lcd.setCursor(k, 2);
       lcd.print("  ");
-      lcd.setCursor(j, 1);
+      lcd.setCursor(k, 1);
       lcd.write(2);
       lcd.write(2);
     }
     //si es mayor que la referencia +20
     else if (freq_peaks[i] > ref_up_20) {
-      lcd.setCursor(j, 1);
+      lcd.setCursor(k, 1);
       lcd.print("  ");
-      lcd.setCursor(j, 2);
+      lcd.setCursor(k, 2);
       lcd.print("  ");
-      lcd.setCursor(j, 0);
+      lcd.setCursor(k, 0);
       lcd.write(byte(0));
       lcd.write(byte(0));
 
@@ -279,21 +280,21 @@ void tuning_print(float freq_peaks[]) {
 
     //si esta entre la referencia y la referencia +20
     else if (freq_peaks[i] < ref_up_20) {
-      lcd.setCursor(j, 1);
+      lcd.setCursor(k, 1);
       lcd.print("  ");
-      lcd.setCursor(j, 2);
+      lcd.setCursor(k, 2);
       lcd.print("  ");
-      lcd.setCursor(j, 0);
+      lcd.setCursor(k, 0);
       lcd.write(byte(1));
       lcd.write(byte(1));
     }
     //salvamos el espacio extra de enmedio
-    if (j == 7) {
-      j++;
+    if (k == 7) {
+      k++;
     }
     //escribimos en la siguiente posicion
-    j = j + 2;
-
+    k = k + 3;
+  Serial.print(k);
   }
 }
 
@@ -446,7 +447,7 @@ void loop() {
     Serial.print("|| he -> ");
     Serial.println(he_freq_peak, 2);
     //TODO something with the peak
-    tuning_print(freq_peaks_detected);
+    //tuning_print(freq_peaks_detected);
     delay(85);
   }
 }
