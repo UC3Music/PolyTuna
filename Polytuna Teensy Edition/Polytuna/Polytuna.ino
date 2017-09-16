@@ -42,15 +42,34 @@ float G_peak = 0.0;
 float B_peak = 0.0;
 float he_peak = 0.0;
 
-//Valores de referencia para afinar
-float HE_REF = 329.63;
-float B_REF = 246.94;
+//Valores de referencia para calcular los intervalos +-20
+float HE_REF = 988.89;
+float B_REF = 740.82;
 float G_REF = 196.00;
 float D_REF = 146.83;
 float A_REF = 110.00;
 float E_REF = 82.41;
 
 float REFS[7] = {E_REF, A_REF, D_REF, G_REF, B_REF, HE_REF};
+
+//limites de los intervalos considerados como afinada
+float HE_REF_LOW = 988.6502;
+float HE_REF_HIGH = 989.4708;
+float B_REF_LOW = 740.4910;
+float B_REF_HIGH = 740.9928;
+float G_REF_LOW = 195.6426;
+float G_REF_HIGH = 195.8060;
+float D_REF_LOW = 147.0298;
+float D_REF_HIGH = 147.2196;
+float A_REF_LOW = 109.7334;
+float A_REF_HIGH = 109.8457;
+float E_REF_LOW = 82.6539;
+float E_REF_HIGH = 82.7871;
+
+float REFS_LOW_HIGH[2][6] = {
+  {E_REF_LOW, A_REF_LOW, D_REF_LOW, G_REF_LOW, B_REF_LOW, HE_REF_LOW},
+  {E_REF_HIGH, A_REF_HIGH, D_REF_HIGH, G_REF_HIGH, B_REF_HIGH, HE_REF_HIGH}
+};
 
 //multiplicadores de notas
 float UP_TONE = 1.0595;
@@ -154,7 +173,7 @@ float interpolate(float x0, float x1, float x2, float b0, float b1, float b2) {
   float a2 = b2 / ( (x2 - x0) * (x2 - x1) );
 
   //defino el numero de muestras intermedias
-  int sampleN = 3200; //probar valores. A mayor sea, mejor precisión pero peor rendimiento
+  int sampleN = 200; //probar valores. A mayor sea, mejor precisión pero peor rendimiento
   //con 3200 obtenemos un valor cada 0.005 Hz aprox.
   //resolucion tras interpolar = 2xResolution /sampleN = 0.004870
   float xMax = 0.00;
@@ -230,11 +249,11 @@ void static_display() {
 void tuning_print(float freq_peaks[]) {
   //j controla la posicion a escribir
   int k = 1;
-  
+
   for (int i = 0; i < 6; i++) {
     //calculamos los intervalos para las representaciones
-    float ref_up_20 = REFS[i] * UP_20_CENT;
-    float ref_down_20 = REFS[i] * DOWN_20_CENT;
+    float ref_up_20 = REFS[i] * UP_50_CENT;
+    float ref_down_20 = REFS[i] * DOWN_50_CENT;
     //si es menor del tono referencia por mas de 20 cents
     if (freq_peaks[i] < ref_down_20) {
       lcd.setCursor(k, 0);
@@ -257,7 +276,7 @@ void tuning_print(float freq_peaks[]) {
       lcd.write(byte(3));
     }
     //si es igual a la referencia
-    else if (freq_peaks[i] == REFS[i]) {
+    else if ((freq_peaks[i] >= REFS_LOW_HIGH[0][i]) && (freq_peaks[i] <= REFS_LOW_HIGH[1][i])) {
       lcd.setCursor(k, 0);
       lcd.print("  ");
       lcd.setCursor(k, 2);
@@ -294,7 +313,6 @@ void tuning_print(float freq_peaks[]) {
     }
     //escribimos en la siguiente posicion
     k = k + 3;
-  Serial.print(k);
   }
 }
 
@@ -362,7 +380,7 @@ void loop() {
     */
     //////////////////// BUSCAR PICO EN CADA INTERVALO DE BUSQUEDA //////////
     //// E string
-    for (centralBin = 2; centralBin <= 12; centralBin++) { //central bin entre: 7.79*3 = 23.37 y 7.79*12 = 93.48
+    for (centralBin = 9; centralBin <= 12; centralBin++) { //central bin entre: 7.79*3 = 23.37 y 7.79*12 = 93.48
       float aux_peak_lvl = fft1024.read(centralBin);
       if (aux_peak_lvl > E_peak_lvl) {
         E_peak_lvl = aux_peak_lvl;
@@ -398,7 +416,7 @@ void loop() {
     }
     //estas dos cuerdas tienen suficientes bins para poder solaparse los rangos de busqueda
     //// B string
-    for (centralBin = 28; centralBin <= 39; centralBin++) { //central bin entre: 218.12 y 303.81
+    for (centralBin = 89; centralBin <= 110; centralBin++) { //central bin entre: 218.12 y 303.81
       float aux_peak_lvl = fft1024.read(centralBin);
       if (aux_peak_lvl > B_peak_lvl) {
         B_peak_lvl = aux_peak_lvl;
@@ -406,7 +424,7 @@ void loop() {
       }
     }
     //// he string
-    for (centralBin = 36; centralBin <= 55; centralBin++) { //central bin entre: 280 y 428.45
+    for (centralBin = 110; centralBin <= 146; centralBin++) { //central bin entre: 280 y 428.45
       float aux_peak_lvl = fft1024.read(centralBin);
       if (aux_peak_lvl > he_peak_lvl) {
         he_peak_lvl = aux_peak_lvl;
@@ -433,7 +451,7 @@ void loop() {
 
     float freq_peaks_detected [] = {E_freq_peak, A_freq_peak, D_freq_peak, G_freq_peak, B_freq_peak, he_freq_peak};
 
-    //////////////////////////// PRINTING VALUES
+    //////////////////////////// PRINTING VALUES TO SERIAL PORT
     Serial.print(" E -> ");
     Serial.print(E_freq_peak, 2);
     Serial.print("|| A -> ");
@@ -447,8 +465,8 @@ void loop() {
     Serial.print("|| he -> ");
     Serial.println(he_freq_peak, 2);
     //TODO something with the peak
-    //tuning_print(freq_peaks_detected);
-    delay(85);
+    tuning_print(freq_peaks_detected);
+    delay(50);
   }
 }
 
