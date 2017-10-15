@@ -3,13 +3,27 @@ PolyTuna
 
     This is a work in progress
     
-A polyphonic tuner pedal. 
+A DIY polyphonic guitar tuner pedal. With it you can check the tuning of all the strings with a single strum, saving you time when you need it most. Very useful for playing live!
 
 ![Logo](doc/img/lots-of-tuna-fish.png)
 
-### Dependencies
+This work has been developed by [Sergio Sánchez](https://github.com/SerjSanchez) as his Bachelor's Thesis, with [David Estevez](https://github.com/David-Estevez) as his advisor. The Thesis itself can be downloaded [here](https://github.com/UC3Music/PolyTuna/raw/master/Memoria.pdf) (in Spanish).
 
-* pyAudio: `sudo apt-get install python-pyaudio python3-pyaudio`
+The work has three main parts:
+
+* A preeliminary study of the guitar signal to decide the best analysis technique for the pedal. This study was made in Matlab and the sources for the study can be found in the `MATLAB Analysis` folder.
+* A software implementation of the polyphonic tuner to validate the algorithms prior to the hardware implementation. This code is written in Python and contained in the `Software tuner` folder.
+* A hardware implementation (i.e. the pedal itself). The firmware for the device is stored in the `Polytuna Teensy Edition` folder. The schematics can be found in the [Thesis document](https://github.com/UC3Music/PolyTuna/raw/master/Memoria.pdf). Schematics will be ported to some EDA software (probably Kicad) in the future.
+
+Some pictures of the prototype:
+<img src="doc/img/polytuna.jpg" alt="pic1">
+<img src="doc/img/polytuna_02.jpg" width="400px" alt="pic2">
+<img src="doc/img/polytuna_03.jpg" width="400px" alt="pic3">
+<img src="doc/img/polytuna_04.jpg" width="200px" alt="pic4">
+<img src="doc/img/polytuna_05.jpg" width="200px" alt="pic5">
+<img src="doc/img/polytuna_06.jpg" width="200px" alt="pic6">
+<img src="doc/img/polytuna_07.jpg" width="200px" alt="pic7">
+<img src="doc/img/polytuna_08.jpg" width="200px" alt="pic8">
 
 #### Author
 	
@@ -18,23 +32,3 @@ A polyphonic tuner pedal.
 #### Advisor
     
 *  [David Estévez Fernández](https://github.com/David-Estevez)
-
-### Teensy Edition Libraries information
-
-* In order to get Polytuna fully working in Teensy, it's needed to overwrite these files with the ones included in the folder "Polytuna Teensy Edition":
-
-	******TO AVOID FUTURE PROBLEMS, SAVE THE ORIGINAL FILES BEFORE OVERWRITING ANYTHING.******
-	
-	* "AudioStream.h":  
-	
-		* `(Arduino installation folder)\Arduino\hardware\teensy\avr\cores\teensy3` (Windows based systems)		 
-			
-		* `(Arduino installation folder)/Arduino/hardware/teensy/avr/cores/teensy3` (Linux based systems)
-			
-	* "output_i2s.cpp": 
-	
-		* `(Arduino installation folder)\Arduino\hardware\teensy\avr\libraries\Audio` (Windows based systems)	
-			
-		* `(Arduino installation folder)/Arduino/hardware/teensy/avr/libraries/Audio` (Linux based systems)
-			
-These files ensure the sampling frequency is 8kHz instead of the 44.1kHz standard in Teensy to get a more precise FFT.
