@@ -42,6 +42,9 @@ LIBS:SparkFun-Mounting
 LIBS:SparkFun-Opto
 LIBS:kicad-library
 LIBS:teensy_3_2_full
+LIBS:pot_with_shield
+LIBS:switch_dpdt
+LIBS:ws2812b
 LIBS:Polytuna-cache
 EELAYER 25 0
 EELAYER END
@@ -557,9 +560,9 @@ Text GLabel 5100 5750 2    60   Input ~ 0
 Pin22_Teensy
 Text GLabel 5100 6650 2    60   Input ~ 0
 Pin13_Teensy
-Text GLabel 5100 6150 2    60   Input ~ 0
+Text GLabel 6150 6150 2    60   Input ~ 0
 SDA
-Text GLabel 5100 6050 2    60   Input ~ 0
+Text GLabel 6150 6050 2    60   Input ~ 0
 SCL
 Text GLabel 5100 5350 2    60   Input ~ 0
 Teensy_PWR
@@ -691,6 +694,45 @@ F 2 "" H 650 5100 50  0001 C CNN
 F 3 "" H 650 5100 50  0001 C CNN
 	1    650  5100
 	1    0    0    -1  
+$EndComp
+Text GLabel 1600 3800 0    60   Input ~ 0
+3.3V(TeensySRC)
+Text GLabel 1600 3500 0    60   Input ~ 0
+3.3V(TeensySRC)
+Text GLabel 1600 4050 0    60   Input ~ 0
+3.3V(TeensySRC)
+$Comp
+L R R3
+U 1 1 5A9DF744
+P 1700 4300
+F 0 "R3" V 1780 4300 50  0000 C CNN
+F 1 "R" V 1700 4300 50  0000 C CNN
+F 2 "" V 1630 4300 50  0001 C CNN
+F 3 "" H 1700 4300 50  0001 C CNN
+	1    1700 4300
+	0    1    1    0   
+$EndComp
+$Comp
+L R R2
+U 1 1 5A9DF7E7
+P 1650 4550
+F 0 "R2" V 1730 4550 50  0000 C CNN
+F 1 "R" V 1650 4550 50  0000 C CNN
+F 2 "" V 1580 4550 50  0001 C CNN
+F 3 "" H 1650 4550 50  0001 C CNN
+	1    1650 4550
+	0    1    1    0   
+$EndComp
+$Comp
+L R R1
+U 1 1 5A9DF884
+P 1600 4800
+F 0 "R1" V 1680 4800 50  0000 C CNN
+F 1 "R" V 1600 4800 50  0000 C CNN
+F 2 "" V 1530 4800 50  0001 C CNN
+F 3 "" H 1600 4800 50  0001 C CNN
+	1    1600 4800
+	0    1    1    0   
 $EndComp
 Wire Wire Line
 	4100 2050 5150 2050
@@ -877,49 +919,14 @@ Connection ~ 650  4800
 Wire Wire Line
 	900  4300 650  4300
 Connection ~ 650  4550
-Text GLabel 1600 3800 0    60   Input ~ 0
-3.3V(TeensySRC)
-Text GLabel 1600 3500 0    60   Input ~ 0
-3.3V(TeensySRC)
-Text GLabel 1600 4050 0    60   Input ~ 0
-3.3V(TeensySRC)
-$Comp
-L R R3
-U 1 1 5A9DF744
-P 1700 4300
-F 0 "R3" V 1780 4300 50  0000 C CNN
-F 1 "R" V 1700 4300 50  0000 C CNN
-F 2 "" V 1630 4300 50  0001 C CNN
-F 3 "" H 1700 4300 50  0001 C CNN
-	1    1700 4300
-	0    1    1    0   
-$EndComp
-$Comp
-L R R2
-U 1 1 5A9DF7E7
-P 1650 4550
-F 0 "R2" V 1730 4550 50  0000 C CNN
-F 1 "R" V 1650 4550 50  0000 C CNN
-F 2 "" V 1580 4550 50  0001 C CNN
-F 3 "" H 1650 4550 50  0001 C CNN
-	1    1650 4550
-	0    1    1    0   
-$EndComp
-$Comp
-L R R1
-U 1 1 5A9DF884
-P 1600 4800
-F 0 "R1" V 1680 4800 50  0000 C CNN
-F 1 "R" V 1600 4800 50  0000 C CNN
-F 2 "" V 1530 4800 50  0001 C CNN
-F 3 "" H 1600 4800 50  0001 C CNN
-	1    1600 4800
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	2300 4300 1850 4300
 Wire Wire Line
 	2250 4550 1800 4550
 Wire Wire Line
 	2200 4800 1750 4800
+Wire Wire Line
+	6150 6050 5100 6050
+Wire Wire Line
+	5100 6150 6150 6150
 $EndSCHEMATC

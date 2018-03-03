@@ -1,4 +1,4 @@
-update=03/03/2018 17:01:24
+update=03/03/2018 17:33:20
 version=1
 last_client=kicad
 [pcbnew]
@@ -72,3 +72,6 @@ LibName40=KiCad-Library-teensy/SparkFun-Mounting
 LibName41=KiCad-Library-teensy/SparkFun-Opto
 LibName42=kicad-library-David/kicad-library-master/library/kicad-library
 LibName43=KiCad-Library-teensy/teensy footprints.pretty/teensy_3_2_full
+LibName44=kicad-library-David/kicad-library-master/library/symbols/passives/pot_with_shield
+LibName45=kicad-library-David/kicad-library-master/library/symbols/passives/switch_dpdt
+LibName46=kicad-library-David/kicad-library-master/library/symbols/passives/ws2812b
