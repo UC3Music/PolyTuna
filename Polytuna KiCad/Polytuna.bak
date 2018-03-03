@@ -40,11 +40,7 @@ LIBS:SparkFun-IC-PMIC
 LIBS:SparkFun-Jacks
 LIBS:SparkFun-Mounting
 LIBS:SparkFun-Opto
-LIBS:teensy_3.1
-LIBS:teensy_3_2_full
-LIBS:TEENSYPP2
-LIBS:Teensy_test_layout-cache
-LIBS:Teensy_test_layout-rescue
+LIBS:kicad-library
 LIBS:Polytuna-cache
 EELAYER 25 0
 EELAYER END
@@ -268,7 +264,7 @@ F 3 "" H 8950 4200 60  0000 C CNN
 $EndComp
 Text GLabel 6900 2150 2    60   Input ~ 0
 LineIN(SGTL)
-Text GLabel 9650 3550 2    60   Input ~ 0
+Text GLabel 9900 3550 2    60   Input ~ 0
 LineIN(SGTL)
 NoConn ~ 3700 2850
 $Comp
@@ -318,6 +314,128 @@ F 2 "" H 6788 2000 50  0001 C CNN
 F 3 "" H 6750 2150 50  0001 C CNN
 	1    6750 2150
 	0    1    1    0   
+$EndComp
+$Comp
+L C Ct1
+U 1 1 5A99A9B9
+P 7150 5100
+F 0 "Ct1" H 7175 5200 50  0000 L CNN
+F 1 "0.15uF" H 7175 5000 50  0000 L CNN
+F 2 "" H 7188 4950 50  0001 C CNN
+F 3 "" H 7150 5100 50  0001 C CNN
+	1    7150 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A99AA98
+P 7150 5250
+F 0 "#PWR?" H 7150 5000 50  0001 C CNN
+F 1 "GND" H 7150 5100 50  0000 C CNN
+F 2 "" H 7150 5250 50  0001 C CNN
+F 3 "" H 7150 5250 50  0001 C CNN
+	1    7150 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A99B48C
+P 7600 4950
+F 0 "#PWR?" H 7600 4700 50  0001 C CNN
+F 1 "GND" H 7600 4800 50  0000 C CNN
+F 2 "" H 7600 4950 50  0001 C CNN
+F 3 "" H 7600 4950 50  0001 C CNN
+	1    7600 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A99B4BC
+P 7950 4950
+F 0 "#PWR?" H 7950 4700 50  0001 C CNN
+F 1 "GND" H 7950 4800 50  0000 C CNN
+F 2 "" H 7950 4950 50  0001 C CNN
+F 3 "" H 7950 4950 50  0001 C CNN
+	1    7950 4950
+	1    0    0    -1  
+$EndComp
+Text GLabel 7800 3850 0    60   Input ~ 0
+Pin11_Teensy
+Text GLabel 7800 3950 0    60   Input ~ 0
+Pin9_Teensy
+Text GLabel 7800 4050 0    60   Input ~ 0
+Pin23_Teensy
+Text GLabel 7800 4150 0    60   Input ~ 0
+Pin22_Teensy
+Text GLabel 7800 4250 0    60   Input ~ 0
+Pin13_Teensy
+$Comp
+L R R
+U 1 1 5A99BE53
+P 7750 3300
+F 0 "R" V 7830 3300 50  0000 C CNN
+F 1 "2.2K" V 7750 3300 50  0000 C CNN
+F 2 "" V 7680 3300 50  0001 C CNN
+F 3 "" H 7750 3300 50  0001 C CNN
+	1    7750 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R
+U 1 1 5A99BF26
+P 8050 3300
+F 0 "R" V 8130 3300 50  0000 C CNN
+F 1 "2.2K" V 8050 3300 50  0000 C CNN
+F 2 "" V 7980 3300 50  0001 C CNN
+F 3 "" H 8050 3300 50  0001 C CNN
+	1    8050 3300
+	1    0    0    -1  
+$EndComp
+Text GLabel 8050 3150 1    60   Input ~ 0
+3.3V(TeensySRC)
+Text GLabel 7750 3150 1    60   Input ~ 0
+3.3V(TeensySRC)
+NoConn ~ 8250 4600
+NoConn ~ 9650 4700
+NoConn ~ 9650 4550
+NoConn ~ 9350 5250
+NoConn ~ 9650 4350
+NoConn ~ 9650 4250
+NoConn ~ 9650 4150
+NoConn ~ 9650 3850
+NoConn ~ 9650 3750
+$Comp
+L C C?
+U 1 1 5A9A347C
+P 10550 1750
+F 0 "C?" H 10575 1850 50  0000 L CNN
+F 1 "2.2uF" H 10575 1650 50  0000 L CNN
+F 2 "" H 10588 1600 50  0001 C CNN
+F 3 "" H 10550 1750 50  0001 C CNN
+	1    10550 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A9A367A
+P 8600 2300
+F 0 "C?" H 8625 2400 50  0000 L CNN
+F 1 "2.2uF" H 8625 2200 50  0000 L CNN
+F 2 "" H 8638 2150 50  0001 C CNN
+F 3 "" H 8600 2300 50  0001 C CNN
+	1    8600 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A9A3801
+P 7600 1600
+F 0 "C?" H 7625 1700 50  0000 L CNN
+F 1 "2.2uF" H 7625 1500 50  0000 L CNN
+F 2 "" H 7638 1450 50  0001 C CNN
+F 3 "" H 7600 1600 50  0001 C CNN
+	1    7600 1600
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	4100 2050 5150 2050
@@ -370,28 +488,6 @@ Wire Wire Line
 	7150 4500 8250 4500
 Wire Wire Line
 	7150 4500 7150 4950
-$Comp
-L C Ct1
-U 1 1 5A99A9B9
-P 7150 5100
-F 0 "Ct1" H 7175 5200 50  0000 L CNN
-F 1 "0.15uF" H 7175 5000 50  0000 L CNN
-F 2 "" H 7188 4950 50  0001 C CNN
-F 3 "" H 7150 5100 50  0001 C CNN
-	1    7150 5100
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR?
-U 1 1 5A99AA98
-P 7150 5250
-F 0 "#PWR?" H 7150 5000 50  0001 C CNN
-F 1 "GND" H 7150 5100 50  0000 C CNN
-F 2 "" H 7150 5250 50  0001 C CNN
-F 3 "" H 7150 5250 50  0001 C CNN
-	1    7150 5250
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	8250 4700 7600 4700
 Wire Wire Line
@@ -400,64 +496,6 @@ Wire Wire Line
 	8250 4800 7950 4800
 Wire Wire Line
 	7950 4800 7950 4950
-$Comp
-L GND #PWR?
-U 1 1 5A99B48C
-P 7600 4950
-F 0 "#PWR?" H 7600 4700 50  0001 C CNN
-F 1 "GND" H 7600 4800 50  0000 C CNN
-F 2 "" H 7600 4950 50  0001 C CNN
-F 3 "" H 7600 4950 50  0001 C CNN
-	1    7600 4950
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR?
-U 1 1 5A99B4BC
-P 7950 4950
-F 0 "#PWR?" H 7950 4700 50  0001 C CNN
-F 1 "GND" H 7950 4800 50  0000 C CNN
-F 2 "" H 7950 4950 50  0001 C CNN
-F 3 "" H 7950 4950 50  0001 C CNN
-	1    7950 4950
-	1    0    0    -1  
-$EndComp
-Text GLabel 8250 3850 0    60   Input ~ 0
-Pin11_Teensy
-Text GLabel 8250 3950 0    60   Input ~ 0
-Pin9_Teensy
-Text GLabel 8250 4050 0    60   Input ~ 0
-Pin23_Teensy
-Text GLabel 8250 4150 0    60   Input ~ 0
-Pin22_Teensy
-Text GLabel 8250 4250 0    60   Input ~ 0
-Pin13_Teensy
-$Comp
-L R R
-U 1 1 5A99BE53
-P 7750 3300
-F 0 "R" V 7830 3300 50  0000 C CNN
-F 1 "2.2K" V 7750 3300 50  0000 C CNN
-F 2 "" V 7680 3300 50  0001 C CNN
-F 3 "" H 7750 3300 50  0001 C CNN
-	1    7750 3300
-	1    0    0    -1  
-$EndComp
-$Comp
-L R 2.2K
-U 1 1 5A99BF26
-P 8050 3300
-F 0 "2.2K" V 8130 3300 50  0000 C CNN
-F 1 "R" V 8050 3300 50  0000 C CNN
-F 2 "" V 7980 3300 50  0001 C CNN
-F 3 "" H 8050 3300 50  0001 C CNN
-	1    8050 3300
-	1    0    0    -1  
-$EndComp
-Text GLabel 8050 3150 1    60   Input ~ 0
-3.3V(TeensySRC)
-Text GLabel 7750 3150 1    60   Input ~ 0
-3.3V(TeensySRC)
 Wire Wire Line
 	8250 3550 7500 3550
 Wire Wire Line
@@ -468,4 +506,211 @@ Wire Wire Line
 Wire Wire Line
 	8050 3450 8050 3650
 Connection ~ 8050 3650
+Wire Wire Line
+	8250 3850 7800 3850
+Wire Wire Line
+	7800 3950 8250 3950
+Wire Wire Line
+	8250 4050 7800 4050
+Wire Wire Line
+	7800 4150 8250 4150
+Wire Wire Line
+	8250 4250 7800 4250
+Wire Wire Line
+	9900 3550 9650 3550
+Wire Wire Line
+	9150 3100 9150 2900
+Wire Wire Line
+	9150 2900 9900 2900
+Wire Wire Line
+	9900 2900 9900 1450
+Wire Wire Line
+	8950 3100 8950 2700
+Wire Wire Line
+	8950 2700 9300 2700
+Wire Wire Line
+	9300 2700 9300 1450
+Wire Wire Line
+	7600 1450 9450 1450
+Wire Wire Line
+	8750 3100 8750 2550
+Wire Wire Line
+	8750 2550 9050 2550
+Wire Wire Line
+	9050 2550 9050 2150
+Wire Wire Line
+	9050 2150 8300 2150
+$Comp
+L GND #PWR?
+U 1 1 5A9A3A3D
+P 8600 2450
+F 0 "#PWR?" H 8600 2200 50  0001 C CNN
+F 1 "GND" H 8600 2300 50  0000 C CNN
+F 2 "" H 8600 2450 50  0001 C CNN
+F 3 "" H 8600 2450 50  0001 C CNN
+	1    8600 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A9A3A77
+P 10300 1750
+F 0 "C?" H 10325 1850 50  0000 L CNN
+F 1 "0.1uF" H 10325 1650 50  0000 L CNN
+F 2 "" H 10338 1600 50  0001 C CNN
+F 3 "" H 10300 1750 50  0001 C CNN
+	1    10300 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A9A4574
+P 7850 1600
+F 0 "C?" H 7875 1700 50  0000 L CNN
+F 1 "0.1uF" H 7875 1500 50  0000 L CNN
+F 2 "" H 7888 1450 50  0001 C CNN
+F 3 "" H 7850 1600 50  0001 C CNN
+	1    7850 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A9A4645
+P 8100 1600
+F 0 "C?" H 8125 1700 50  0000 L CNN
+F 1 "0.1uF" H 8125 1500 50  0000 L CNN
+F 2 "" H 8138 1450 50  0001 C CNN
+F 3 "" H 8100 1600 50  0001 C CNN
+	1    8100 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A9A4786
+P 7600 1750
+F 0 "#PWR?" H 7600 1500 50  0001 C CNN
+F 1 "GND" H 7600 1600 50  0000 C CNN
+F 2 "" H 7600 1750 50  0001 C CNN
+F 3 "" H 7600 1750 50  0001 C CNN
+	1    7600 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A9A4860
+P 7850 1750
+F 0 "#PWR?" H 7850 1500 50  0001 C CNN
+F 1 "GND" H 7850 1600 50  0000 C CNN
+F 2 "" H 7850 1750 50  0001 C CNN
+F 3 "" H 7850 1750 50  0001 C CNN
+	1    7850 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A9A48A0
+P 8100 1750
+F 0 "#PWR?" H 8100 1500 50  0001 C CNN
+F 1 "GND" H 8100 1600 50  0000 C CNN
+F 2 "" H 8100 1750 50  0001 C CNN
+F 3 "" H 8100 1750 50  0001 C CNN
+	1    8100 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A9A52C2
+P 10300 1900
+F 0 "#PWR?" H 10300 1650 50  0001 C CNN
+F 1 "GND" H 10300 1750 50  0000 C CNN
+F 2 "" H 10300 1900 50  0001 C CNN
+F 3 "" H 10300 1900 50  0001 C CNN
+	1    10300 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A9A5302
+P 10550 1900
+F 0 "#PWR?" H 10550 1650 50  0001 C CNN
+F 1 "GND" H 10550 1750 50  0000 C CNN
+F 2 "" H 10550 1900 50  0001 C CNN
+F 3 "" H 10550 1900 50  0001 C CNN
+	1    10550 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L L_Core_Ferrite Ferrite
+U 1 1 5A9A5342
+P 9600 1450
+F 0 "Ferrite" V 9550 1450 50  0000 C CNN
+F 1 "600" V 9710 1450 50  0000 C CNN
+F 2 "" H 9600 1450 50  0001 C CNN
+F 3 "" H 9600 1450 50  0001 C CNN
+	1    9600 1450
+	0    1    1    0   
+$EndComp
+Connection ~ 9300 1450
+Wire Wire Line
+	9750 1450 10550 1450
+Connection ~ 9900 1450
+Wire Wire Line
+	10550 1450 10550 1600
+Wire Wire Line
+	10300 1450 10300 1600
+Connection ~ 10300 1450
+Connection ~ 8100 1450
+Connection ~ 7850 1450
+Wire Wire Line
+	8300 2150 8300 1900
+Wire Wire Line
+	8300 1900 8450 1900
+Connection ~ 8600 2150
+Wire Wire Line
+	9150 1450 9150 1900
+Wire Wire Line
+	9150 1900 9000 1900
+Connection ~ 9150 1450
+$Comp
+L BOARD_TEENSY_3.1 BOARD?
+U 1 1 5A9A9C3B
+P 3050 5400
+F 0 "BOARD?" H 3800 4450 60  0000 C CNN
+F 1 "BOARD_TEENSY_3.1" H 2400 4450 60  0000 C CNN
+F 2 "" H 3050 4300 60  0000 C CNN
+F 3 "" H 3050 4300 60  0000 C CNN
+	1    3050 5400
+	1    0    0    -1  
+$EndComp
+Text GLabel 1850 5800 0    60   Input ~ 0
+Pin11_Teensy
+Text GLabel 1850 5600 0    60   Input ~ 0
+Pin9_Teensy
+Text GLabel 4250 5300 2    60   Input ~ 0
+Pin23_Teensy
+Text GLabel 4250 5400 2    60   Input ~ 0
+Pin22_Teensy
+Text GLabel 1850 6000 0    60   Input ~ 0
+Pin13_Teensy
+Text GLabel 4250 5800 2    60   Input ~ 0
+SDA
+Text GLabel 4250 5700 2    60   Input ~ 0
+SCL
+Text GLabel 4250 4800 2    60   Input ~ 0
+Teensy_PWR
+$Comp
+L GND #PWR?
+U 1 1 5A9B2652
+P 1500 4800
+F 0 "#PWR?" H 1500 4550 50  0001 C CNN
+F 1 "GND" H 1500 4650 50  0000 C CNN
+F 2 "" H 1500 4800 50  0001 C CNN
+F 3 "" H 1500 4800 50  0001 C CNN
+	1    1500 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 4800 1500 4800
+Text GLabel 4250 5000 2    60   Input ~ 0
+3.3V(TeensySRC)
 $EndSCHEMATC

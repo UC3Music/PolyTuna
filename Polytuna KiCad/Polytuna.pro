@@ -1,4 +1,4 @@
-update=02/03/2018 19:18:08
+update=03/03/2018 17:01:24
 version=1
 last_client=kicad
 [pcbnew]
@@ -71,3 +71,4 @@ LibName39=KiCad-Library-teensy/SparkFun-Jacks
 LibName40=KiCad-Library-teensy/SparkFun-Mounting
 LibName41=KiCad-Library-teensy/SparkFun-Opto
 LibName42=kicad-library-David/kicad-library-master/library/kicad-library
+LibName43=KiCad-Library-teensy/teensy footprints.pretty/teensy_3_2_full
