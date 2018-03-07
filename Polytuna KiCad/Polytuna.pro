@@ -1,4 +1,4 @@
-update=03/03/2018 17:33:20
+update=07/03/2018 12:45:54
 version=1
 last_client=kicad
 [pcbnew]
@@ -75,3 +75,4 @@ LibName43=KiCad-Library-teensy/teensy footprints.pretty/teensy_3_2_full
 LibName44=kicad-library-David/kicad-library-master/library/symbols/passives/pot_with_shield
 LibName45=kicad-library-David/kicad-library-master/library/symbols/passives/switch_dpdt
 LibName46=kicad-library-David/kicad-library-master/library/symbols/passives/ws2812b
+LibName47=Libraries Polytuna/AP7313-33SAG-7
