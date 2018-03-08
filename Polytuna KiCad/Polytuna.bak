@@ -182,7 +182,7 @@ F 3 "" H 1250 2050 50  0001 C CNN
 	1    1250 2050
 	1    0    0    -1  
 $EndComp
-Text GLabel 4150 3900 0    60   Input ~ 0
+Text GLabel 4600 3900 0    60   Input ~ 0
 Teensy_PWR
 $Comp
 L SW_DPDT_x2 SW4
@@ -1172,7 +1172,7 @@ Wire Wire Line
 Wire Wire Line
 	5050 4200 5050 4250
 Wire Wire Line
-	4750 3900 4150 3900
+	4750 3900 4600 3900
 NoConn ~ 5450 4100
 Connection ~ 7400 600 
 $Comp
@@ -1277,4 +1277,42 @@ Text Notes 1650 2300 0    60   Italic 12
 AUDIO I/O STAGE
 Text Notes 750  7150 0    60   Italic 12
 POWER FLAGS
+Text GLabel 8700 6000 0    60   Input ~ 0
+SDA
+Text GLabel 8700 5900 0    60   Input ~ 0
+SCL
+Text GLabel 8700 6100 0    60   Input ~ 0
+Teensy_PWR
+$Comp
+L GND #PWR038
+U 1 1 5AA39AB2
+P 8700 6200
+F 0 "#PWR038" H 8700 5950 50  0001 C CNN
+F 1 "GND" H 8700 6050 50  0000 C CNN
+F 2 "" H 8700 6200 50  0001 C CNN
+F 3 "" H 8700 6200 50  0001 C CNN
+	1    8700 6200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8700 5900 9300 5900
+Wire Wire Line
+	8700 6000 9300 6000
+Wire Wire Line
+	8700 6100 9300 6100
+Wire Wire Line
+	8700 6200 9300 6200
+Text Notes 8300 5750 0    60   Italic 12
+SCREEN CONNECTION
+$Comp
+L I2C_STANDARD J2
+U 1 1 5AA3A29D
+P 9700 6300
+F 0 "J2" H 9600 6830 50  0000 L BNN
+F 1 "I2C_STANDARD" H 9600 6200 50  0000 L BNN
+F 2 "SparkFun-Connectors_1X04" H 9730 6450 20  0001 C CNN
+F 3 "" H 9700 6300 60  0001 C CNN
+	1    9700 6300
+	-1   0    0    -1  
+$EndComp
 $EndSCHEMATC
