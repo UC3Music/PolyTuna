@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:Polytuna-rescue
 LIBS:power
 LIBS:device
 LIBS:switches
@@ -1009,7 +1010,7 @@ F 3 "" H 4750 4250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L L7805 U3
+L L7805-RESCUE-Polytuna U3
 U 1 1 5AA245E8
 P 4750 3900
 F 0 "U3" H 4600 4025 50  0000 C CNN
