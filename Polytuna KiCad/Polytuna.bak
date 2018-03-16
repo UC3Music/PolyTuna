@@ -689,9 +689,6 @@ $EndComp
 NoConn ~ 10050 2800
 NoConn ~ 5100 5850
 NoConn ~ 5100 5950
-NoConn ~ 2700 6050
-NoConn ~ 2700 6150
-NoConn ~ 2700 6250
 NoConn ~ 2700 6450
 NoConn ~ 2700 6650
 $Comp
@@ -873,37 +870,23 @@ Wire Wire Line
 	2050 550  2050 600 
 Connection ~ 2050 1100
 Wire Wire Line
-	2700 5450 2650 5450
-Wire Wire Line
-	2650 5450 2650 4350
-Wire Wire Line
 	2650 4350 2050 4350
 Wire Wire Line
-	2700 5550 2600 5550
-Wire Wire Line
-	2600 5550 2600 4600
+	2600 4600 2600 5850
 Wire Wire Line
 	2600 4600 2000 4600
 Wire Wire Line
-	2700 5650 2550 5650
-Wire Wire Line
-	2550 5650 2550 4850
+	2550 4850 2550 5950
 Wire Wire Line
 	2550 4850 2000 4850
 Wire Wire Line
-	2700 5750 2300 5750
-Wire Wire Line
-	2300 5750 2300 5450
+	2300 5450 2300 6050
 Wire Wire Line
 	1550 5450 1200 5450
 Wire Wire Line
-	2700 5850 2250 5850
-Wire Wire Line
-	2250 5850 2250 5700
+	2250 5700 2250 6150
 Wire Wire Line
 	1500 5700 1200 5700
-Wire Wire Line
-	1750 5950 2700 5950
 Wire Wire Line
 	1450 5950 1200 5950
 Wire Wire Line
@@ -1482,4 +1465,25 @@ F 3 "" H 6300 6200 50  0001 C CNN
 $EndComp
 Text Notes 8300 1750 0    60   ~ 0
 Maybe 1uF ?? 
+Wire Wire Line
+	1750 5950 2150 5950
+Wire Wire Line
+	2150 5950 2150 6250
+Wire Wire Line
+	2150 6250 2700 6250
+Wire Wire Line
+	2250 6150 2700 6150
+Wire Wire Line
+	2300 6050 2700 6050
+Wire Wire Line
+	2650 4350 2650 5750
+Wire Wire Line
+	2650 5750 2700 5750
+Wire Wire Line
+	2600 5850 2700 5850
+Wire Wire Line
+	2550 5950 2700 5950
+NoConn ~ 2700 5450
+NoConn ~ 2700 5550
+NoConn ~ 2700 5650
 $EndSCHEMATC
