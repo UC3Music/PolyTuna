@@ -1,4 +1,4 @@
-update=17/03/2018 17:53:33
+update=17/03/2018 21:17:51
 version=1
 last_client=kicad
 [pcbnew]
@@ -84,3 +84,5 @@ LibName52=kicad-library-David/kicad-library-master/library/symbols/connectors/ja
 LibName53=kicad-library-David/kicad-library-master/library/symbols/connectors/jack_female_stereo_5_pins
 LibName54=kicad-library-David/kicad-library-master/library/symbols/connectors/jack_female_stereo_6_pins
 LibName55=kicad-library-David/kicad-library-master/library/symbols/connectors/usb-female
+LibName56=IceScreamer/library/icescreamer_SW
+LibName57=IceScreamer/library/sw_tpdt
