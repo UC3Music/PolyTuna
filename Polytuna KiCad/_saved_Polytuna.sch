@@ -47,6 +47,13 @@ LIBS:pot_with_shield
 LIBS:switch_dpdt
 LIBS:ws2812b
 LIBS:AP7313-33SAG-7
+LIBS:dynamixel_conn_3
+LIBS:jack_female_mono
+LIBS:jack_female_mono_3_pins
+LIBS:jack_female_stereo_3_pins
+LIBS:jack_female_stereo_5_pins
+LIBS:jack_female_stereo_6_pins
+LIBS:usb-female
 LIBS:Polytuna-cache
 EELAYER 25 0
 EELAYER END
@@ -109,12 +116,12 @@ $EndComp
 $Comp
 L C C1
 U 1 1 5A947E19
-P 2100 1850
-F 0 "C1" H 2125 1950 50  0000 L CNN
-F 1 "C" H 2125 1750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805" H 2138 1700 50  0001 C CNN
-F 3 "" H 2100 1850 50  0001 C CNN
-	1    2100 1850
+P 2450 1850
+F 0 "C1" H 2475 1950 50  0000 L CNN
+F 1 "C" H 2475 1750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 2488 1700 50  0001 C CNN
+F 3 "" H 2450 1850 50  0001 C CNN
+	1    2450 1850
 	0    1    1    0   
 $EndComp
 $Comp
@@ -142,12 +149,12 @@ $EndComp
 $Comp
 L SW_DPDT_x2 SW4
 U 1 1 5A99587A
-P 1650 1750
-F 0 "SW4" H 1650 1920 50  0000 C CNN
-F 1 "SW_DPDT_x2" H 1650 1550 50  0000 C CNN
-F 2 "def-footprints:Switches_Stomp_Switch_3PDT" H 1650 1750 50  0001 C CNN
-F 3 "" H 1650 1750 50  0001 C CNN
-	1    1650 1750
+P 2050 1750
+F 0 "SW4" H 2050 1920 50  0000 C CNN
+F 1 "SW_DPDT_x2" H 2050 1550 50  0000 C CNN
+F 2 "def-footprints:Switches_Stomp_Switch_3PDT" H 2050 1750 50  0001 C CNN
+F 3 "" H 2050 1750 50  0001 C CNN
+	1    2050 1750
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -736,7 +743,7 @@ F 3 "" H 6300 4600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2250 1850 3300 1850
+	2600 1850 3300 1850
 Wire Wire Line
 	3200 2050 3200 2600
 Wire Wire Line
@@ -749,13 +756,9 @@ Wire Wire Line
 	3200 2050 3300 2050
 Connection ~ 3200 2500
 Wire Wire Line
-	1850 1850 1950 1850
+	2250 1850 2300 1850
 Wire Wire Line
-	2050 1650 1850 1650
-Wire Wire Line
-	2050 1000 2050 1650
-Wire Wire Line
-	1000 1200 2050 1200
+	2450 1650 2250 1650
 Wire Wire Line
 	7550 3650 8650 3650
 Wire Wire Line
@@ -1031,7 +1034,7 @@ Text Notes 7300 2250 0    60   Italic 12
 AUDIO CODEC\n
 Text Notes 5000 3400 0    60   Italic 12
 POWER STAGE
-Text Notes 1650 2300 0    60   Italic 12
+Text Notes 1900 2200 0    60   Italic 12
 AUDIO I/O STAGE
 Text Notes 750  7150 0    60   Italic 12
 POWER FLAGS
@@ -1333,12 +1336,12 @@ $EndComp
 $Comp
 L GNDA #PWR043
 U 1 1 5AA2CADA
-P 650 2000
-F 0 "#PWR043" H 650 1750 50  0001 C CNN
-F 1 "GNDA" H 650 1850 50  0000 C CNN
-F 2 "" H 650 2000 50  0001 C CNN
-F 3 "" H 650 2000 50  0001 C CNN
-	1    650  2000
+P 1700 2350
+F 0 "#PWR043" H 1700 2100 50  0001 C CNN
+F 1 "GNDA" H 1700 2200 50  0000 C CNN
+F 2 "" H 1700 2350 50  0001 C CNN
+F 3 "" H 1700 2350 50  0001 C CNN
+	1    1700 2350
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1453,10 +1456,10 @@ NoConn ~ 2700 5450
 NoConn ~ 2700 5550
 NoConn ~ 2700 5650
 $Comp
-L GND #PWR?
+L GND #PWR052
 U 1 1 5AABFC35
 P 9750 4400
-F 0 "#PWR?" H 9750 4150 50  0001 C CNN
+F 0 "#PWR052" H 9750 4150 50  0001 C CNN
 F 1 "GND" H 9750 4250 50  0000 C CNN
 F 2 "" H 9750 4400 50  0001 C CNN
 F 3 "" H 9750 4400 50  0001 C CNN
@@ -1464,48 +1467,76 @@ F 3 "" H 9750 4400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Audio-Jack-3 J?
-U 1 1 5AAD6F13
-P 800 1200
-F 0 "J?" H 750 1375 50  0000 C CNN
-F 1 "Audio-Jack-3" H 900 1130 50  0000 C CNN
-F 2 "" H 1050 1300 50  0001 C CNN
-F 3 "" H 1050 1300 50  0001 C CNN
-	1    800  1200
+L JACK_FEMALE_STEREO_6_PINS Output1
+U 1 1 5AADD4DA
+P 1200 900
+F 0 "Output1" H 1750 400 60  0000 C CNN
+F 1 "JACK_FEMALE_STEREO_6_PINS" H 650 400 60  0000 C CNN
+F 2 "def-footprints:CONN_Jack_Female_6.35mm_THD" H 1650 850 60  0001 C CNN
+F 3 "" H 1650 850 60  0000 C CNN
+	1    1200 900 
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	1750 750  1750 950 
+Wire Wire Line
+	1750 1150 1750 1250
+Connection ~ 1750 850 
+Wire Wire Line
+	1750 1050 1900 1050
+Wire Wire Line
+	1900 1050 1900 1200
+Wire Wire Line
+	1750 1200 1800 1200
+Wire Wire Line
+	1800 1200 1800 1350
+Wire Wire Line
+	1800 1350 550  1350
+Wire Wire Line
+	600  1350 600  1400
+Connection ~ 1750 1200
+Wire Wire Line
+	1750 850  1850 850 
+Wire Wire Line
+	1850 850  1850 600 
+Wire Wire Line
+	1850 600  550  600 
+Wire Wire Line
+	550  600  550  1350
+Connection ~ 600  1350
 $Comp
-L Audio-Jack-3 J?
-U 1 1 5AAD73D6
-P 850 1750
-F 0 "J?" H 800 1925 50  0000 C CNN
-F 1 "Audio-Jack-3" H 950 1680 50  0000 C CNN
-F 2 "def-footprints:CONN_Jack_Female_6.35mm_THD" H 1100 1850 50  0001 C CNN
-F 3 "" H 1100 1850 50  0001 C CNN
-	1    850  1750
+L JACK_FEMALE_STEREO_6_PINS Input1
+U 1 1 5AADE263
+P 1150 1750
+F 0 "Input1" H 1700 1250 60  0000 C CNN
+F 1 "JACK_FEMALE_STEREO_6_PINS" H 600 1250 60  0000 C CNN
+F 2 "def-footprints:CONN_Jack_Female_6.35mm_THD" H 1600 1700 60  0001 C CNN
+F 3 "" H 1600 1700 60  0000 C CNN
+	1    1150 1750
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	2450 1200 2450 1650
+Wire Wire Line
+	1900 1200 2450 1200
+Wire Wire Line
+	2050 1000 2050 1200
 Connection ~ 2050 1200
 Wire Wire Line
-	1000 1100 1000 950 
+	1700 1900 1800 1900
 Wire Wire Line
-	1000 950  500  950 
+	1800 1900 1800 1750
 Wire Wire Line
-	500  950  500  1300
+	1800 1750 1850 1750
 Wire Wire Line
-	500  1300 600  1300
+	1700 1600 1700 1800
+Connection ~ 1700 1700
 Wire Wire Line
-	600  1300 600  1400
+	1700 1700 1750 1700
 Wire Wire Line
-	1050 1750 1450 1750
+	1750 1700 1750 1350
+Connection ~ 1750 1350
 Wire Wire Line
-	1050 1650 1050 1550
-Wire Wire Line
-	1050 1550 500  1550
-Wire Wire Line
-	500  1550 500  1850
-Wire Wire Line
-	500  1850 650  1850
-Wire Wire Line
-	650  1850 650  2000
+	1700 2000 1700 2350
+Connection ~ 1700 2100
 $EndSCHEMATC

@@ -1,4 +1,4 @@
-update=16/03/2018 18:55:03
+update=17/03/2018 17:53:33
 version=1
 last_client=kicad
 [pcbnew]
@@ -77,3 +77,10 @@ LibName45=kicad-library-David/kicad-library-master/library/symbols/passives/pot_
 LibName46=kicad-library-David/kicad-library-master/library/symbols/passives/switch_dpdt
 LibName47=kicad-library-David/kicad-library-master/library/symbols/passives/ws2812b
 LibName48=Libraries Polytuna/AP7313-33SAG-7
+LibName49=kicad-library-David/kicad-library-master/library/symbols/connectors/dynamixel_conn_3
+LibName50=kicad-library-David/kicad-library-master/library/symbols/connectors/jack_female_mono
+LibName51=kicad-library-David/kicad-library-master/library/symbols/connectors/jack_female_mono_3_pins
+LibName52=kicad-library-David/kicad-library-master/library/symbols/connectors/jack_female_stereo_3_pins
+LibName53=kicad-library-David/kicad-library-master/library/symbols/connectors/jack_female_stereo_5_pins
+LibName54=kicad-library-David/kicad-library-master/library/symbols/connectors/jack_female_stereo_6_pins
+LibName55=kicad-library-David/kicad-library-master/library/symbols/connectors/usb-female
