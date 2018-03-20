@@ -1592,4 +1592,21 @@ Wire Wire Line
 	6200 2450 6200 2250
 Wire Wire Line
 	6200 2250 6000 2250
+$Comp
+L 2Jumper JMP2
+U 1 1 5AB0FC19
+P 1050 7500
+F 0 "JMP2" H 1050 7595 60  0000 C CNN
+F 1 "2Jumper" H 1050 7685 60  0001 C CNN
+F 2 "def-footprints:Miscellaneous_Solder_Jumper" H 2205 7570 60  0001 C CNN
+F 3 "" H 2205 7570 60  0000 C CNN
+	1    1050 7500
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	850  7500 800  7500
+Connection ~ 800  7500
+Wire Wire Line
+	1250 7500 1250 7500
+Connection ~ 1250 7500
 $EndSCHEMATC
