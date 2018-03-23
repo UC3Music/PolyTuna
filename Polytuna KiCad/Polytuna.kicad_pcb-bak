@@ -1995,10 +1995,10 @@
     )
   )
 
-  (module def-footprints:Miscellaneous_Solder_Jumper (layer B.Cu) (tedit 562F54A7) (tstamp 5AB0F8C9)
+  (module def-footprints:Miscellaneous_Solder_Jumper (layer B.Cu) (tedit 5AB5019F) (tstamp 5AB0F8C9)
     (at 217.932 113.792 180)
     (path /5AB0FC19)
-    (fp_text reference JMP2 (at 3.8354 -4.0894 180) (layer B.SilkS)
+    (fp_text reference JMP2 (at 0 -2.032 180) (layer B.SilkS)
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
     )
     (fp_text value 2Jumper (at -5.3086 -3.8608 180) (layer B.Fab)
