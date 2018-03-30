@@ -1,0 +1,24 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model AP7313-33SAG-7
+#/440539/38939/2.23/3/4/Integrated Circuit
+DEF AP7313-33SAG-7 IC 0 30 Y Y 1 F N
+F0 "IC" 850 300 50 H V L CNN
+F1 "AP7313-33SAG-7" 850 200 50 H V L CNN
+F2 "SOT96P240X110-3N" 850 100 50 H I L CNN
+F3 "https://componentsearchengine.com/Datasheets/1/AP7313-33SAG-7.pdf" 850 0 50 H I L CNN
+F4 "Diodes Inc AP7313-33SAG-7, Single Linear Voltage Regulator, 150mA 3.3 V, 2%, 3-Pin SOT-23" 850 -100 50 H I L CNN "Description"
+F5 "Diodes Inc." 850 -200 50 H I L CNN "Manufacturer_Name"
+F6 "AP7313-33SAG-7" 850 -300 50 H I L CNN "Manufacturer_Part_Number"
+F7 "RS" 850 -400 50 H I L CNN "Supplier_Name"
+F8 "7513064" 850 -500 50 H I L CNN "RS Part Number"
+F9 "1.1" 850 -600 50 H I L CNN "Height"
+DRAW
+X IN 1 0 0 200 R 50 50 0 0 B
+X OUT 2 0 -100 200 R 50 50 0 0 B
+X GND 3 1000 0 200 L 50 50 0 0 B
+P 5 0 1 6 200 100 800 100 800 -200 200 -200 200 100 N
+ENDDRAW
+ENDDEF
+#
+#End Library
