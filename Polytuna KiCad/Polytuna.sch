@@ -32,6 +32,30 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:SparkFun-Connectors
+LIBS:SparkFun-Copper
+LIBS:SparkFun-IC-Analog
+LIBS:SparkFun-IC-Logic
+LIBS:SparkFun-IC-Memory
+LIBS:SparkFun-IC-PMIC
+LIBS:SparkFun-Jacks
+LIBS:SparkFun-Mounting
+LIBS:SparkFun-Opto
+LIBS:kicad-library
+LIBS:teensy_3_2_full
+LIBS:pot_with_shield
+LIBS:switch_dpdt
+LIBS:ws2812b
+LIBS:AP7313-33SAG-7
+LIBS:dynamixel_conn_3
+LIBS:jack_female_mono
+LIBS:jack_female_mono_3_pins
+LIBS:jack_female_stereo_3_pins
+LIBS:jack_female_stereo_5_pins
+LIBS:jack_female_stereo_6_pins
+LIBS:usb-female
+LIBS:icescreamer_SW
+LIBS:sw_tpdt
 LIBS:Polytuna-cache
 EELAYER 25 0
 EELAYER END
@@ -108,7 +132,7 @@ U 1 1 5A99396C
 P 6400 3500
 F 0 "U1" H 6400 3700 50  0000 L CNN
 F 1 "LM358" H 6400 3300 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-8-1EP_3.9x4.9mm_Pitch1.27mm" H 6400 3500 50  0001 C CNN
+F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 6400 3500 50  0001 C CNN
 F 3 "" H 6400 3500 50  0001 C CNN
 	1    6400 3500
 	1    0    0    -1  
