@@ -1,4 +1,4 @@
-(kicad_pcb (version 4) (host pcbnew 4.0.7)
+(kicad_pcb (version 4) (host pcbnew 4.0.7-e2-6376~58~ubuntu14.04.1)
 
   (general
     (links 120)
@@ -64,7 +64,7 @@
     (aux_axis_origin 0 0)
     (visible_elements 7FFFF7FF)
     (pcbplotparams
-      (layerselection 0x010fc_80000001)
+      (layerselection 0x010f0_80000001)
       (usegerberextensions true)
       (excludeedgelayer true)
       (linewidth 0.100000)
@@ -82,7 +82,7 @@
       (plotvalue true)
       (plotinvisibletext false)
       (padsonsilk false)
-      (subtractmaskfromsilk false)
+      (subtractmaskfromsilk true)
       (outputformat 1)
       (mirror false)
       (drillshape 0)
