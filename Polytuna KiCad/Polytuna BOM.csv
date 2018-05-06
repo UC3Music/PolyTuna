@@ -1,0 +1,24 @@
+Reference,Component,Amount,Reference,Seller,Unit Cost,Cost
+Input1;Output1,Jack Female 6.35mm THD,2,568-NYS219 ,Mouser,0.724,1.448
+LED1-LED3,LED Diode 3mm THD,3,,Mouser,,0
+R1-R3,Resistor 0805 100R,3,,,,0
+R4;R10,Resistor 0805 10M,2,,,,0
+R5,Resistor 0805 2M,1,,Mouser,,0
+R6,Resistor 0805 10K,1,,,,0
+R7,Resistor 0805 20K,1,,,,0
+R8-R9,Resistor 0805 2K2,2,,Mouser,,0
+RV1-RV3,Potentiometer ALPS RK09K ?,3,,,,0
+U1,Op-Amp LM358,1,,,,0
+U2,Audio Codec SGTL5000 (QFN32EP),1,,,,
+U3,DC/DC Converter VXO7805-500,1, 490-VXO7805-500 ,,,
+J1,Barrel jack PJ-102AH ,1,490-PJ-102AH,Mouser,0.615,0.615
+C1,Capacitor 0805 ceramic 10uF,1,,,,0
+C2-C3;C6;C8,Capacitor 0805 ceramic 2.2uF,4,,Mouser,,0
+C4;C5;C7,Capacitor 0805 ceramic 0.1uF,3,,Mouser,,0
+Ct1,Capacitor 0805 ceramic 0.15uF,1,,Mouser,,0
+Ferrite1,Ferrite bead 0805 600ohms,1,,,,
+SW1-SW3,Switch 6x5mm,3,,Mouser,,0
+SW4,Switch 3PDT,1,,Aliexpress,,
+IC1,Regulator AP7313-33SAG-7,1,,,,
+BOARD1,Teensy 3.1,1,-,-,,0
+,,,,,Total:,2.063
