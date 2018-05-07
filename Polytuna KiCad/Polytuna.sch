@@ -1407,8 +1407,8 @@ F 3 "" H 9100 7750 50  0001 C CNN
 	1    9100 7750
 	1    0    0    -1  
 $EndComp
-Text Notes 11100 3300 0    60   ~ 0
-Maybe 1uF ?? 
+Text Notes 10350 3300 0    60   ~ 0
+C6 =  0.1uF  for 1.2V VDDD
 Wire Wire Line
 	4550 7500 4950 7500
 Wire Wire Line
