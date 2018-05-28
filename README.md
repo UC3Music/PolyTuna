@@ -13,7 +13,7 @@ The work has three main parts:
 
 * A preeliminary study of the guitar signal to decide the best analysis technique for the pedal. This study was made in Matlab and the sources for the study can be found in the `MATLAB Analysis` folder.
 * A software implementation of the polyphonic tuner to validate the algorithms prior to the hardware implementation. This code is written in Python and contained in the `Software tuner` folder.
-* A hardware implementation (i.e. the pedal itself). The firmware for the device is stored in the `Polytuna Teensy Edition` folder. The schematics can be found in the [Thesis document](https://github.com/UC3Music/PolyTuna/raw/master/Memoria.pdf). Schematics will be ported to some EDA software (probably Kicad) in the future.
+* A hardware implementation (i.e. the pedal itself). The firmware for the device is stored in the `Polytuna Teensy Edition` folder. The schematics can be found in the [Thesis document](https://github.com/UC3Music/PolyTuna/raw/master/Memoria.pdf). The full circuit and the PCB KiCad project can be found at [`Polytuna KiCad`](https://github.com/UC3Music/PolyTuna/tree/master/Polytuna%20KiCad) folder.
 
 Some pictures of the prototype:
 <img src="doc/img/polytuna.jpg" alt="pic1">
