@@ -27,7 +27,7 @@ Some pictures of the prototype:
 
 #### Author
 	
-* Sergio Sánchez
+* Sergio Sánchez 
 
 #### Advisor
     
