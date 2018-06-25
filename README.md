@@ -25,6 +25,9 @@ Some pictures of the prototype:
 <img src="doc/img/Polytuna PCB v1 photos/Polytuna_07.JPG" width="170px" alt="pic7">
 <img src="doc/img/Polytuna PCB v1 photos/Polytuna_08.JPG" width="170px" alt="pic8">
 
+The last completed step was the creation of a first PCB prototype, shown on the images, that's fully functional as a tuner.
+Currently the work is focused on improving the display software capabilities to ensure it's easily readable.
+
 #### Author
 	
 * Sergio Sánchez 
