@@ -16,14 +16,14 @@ The work has three main parts:
 * A hardware implementation (i.e. the pedal itself). The firmware for the device is stored in the `Polytuna Teensy Edition` folder. The schematics can be found in the [Thesis document](https://github.com/UC3Music/PolyTuna/raw/master/Memoria.pdf). The full circuit and the PCB KiCad project can be found at [`Polytuna KiCad`](https://github.com/UC3Music/PolyTuna/tree/master/Polytuna%20KiCad) folder.
 
 Some pictures of the prototype:
-<img src="doc/img/polytuna.jpg" alt="pic1">
-<img src="doc/img/polytuna_02.jpg" width="433x" alt="pic2">
-<img src="doc/img/polytuna_03.jpg" width="433px" alt="pic3">
-<img src="doc/img/polytuna_04.jpg" width="170px" alt="pic4">
-<img src="doc/img/polytuna_05.jpg" width="170px" alt="pic5">
-<img src="doc/img/polytuna_06.jpg" width="170px" alt="pic6">
-<img src="doc/img/polytuna_07.jpg" width="170px" alt="pic7">
-<img src="doc/img/polytuna_08.jpg" width="170px" alt="pic8">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_01.jpg" alt="pic1">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_02.jpg" width="433x" alt="pic2">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_03.jpg" width="433px" alt="pic3">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_04.jpg" width="170px" alt="pic4">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_05.jpg" width="170px" alt="pic5">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_06.jpg" width="170px" alt="pic6">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_07.jpg" width="170px" alt="pic7">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_08.jpg" width="170px" alt="pic8">
 
 #### Author
 	
