@@ -17,13 +17,13 @@ The work has three main parts:
 
 Some pictures of the prototype:
 <img src="doc/img/Polytuna PCB v1 photos/Polytuna_01.JPG" alt="pic1">
-<img src="doc/img/Polytuna PCB v1 photos/Polytuna_02.JPG" width="433x" alt="pic2">
-<img src="doc/img/Polytuna PCB v1 photos/Polytuna_03.JPG" width="433px" alt="pic3">
-<img src="doc/img/Polytuna PCB v1 photos/Polytuna_04.JPG" width="170px" alt="pic4">
-<img src="doc/img/Polytuna PCB v1 photos/Polytuna_05.JPG" width="170px" alt="pic5">
-<img src="doc/img/Polytuna PCB v1 photos/Polytuna_06.JPG" width="170px" alt="pic6">
-<img src="doc/img/Polytuna PCB v1 photos/Polytuna_07.JPG" width="170px" alt="pic7">
-<img src="doc/img/Polytuna PCB v1 photos/Polytuna_08.JPG" width="170px" alt="pic8">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_02.JPG" width="434x" alt="pic2">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_03.JPG" width="434px" alt="pic3">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_04.JPG" width="171px" alt="pic4">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_05.JPG" width="171px" alt="pic5">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_06.JPG" width="171px" alt="pic6">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_07.JPG" width="171px" alt="pic7">
+<img src="doc/img/Polytuna PCB v1 photos/Polytuna_08.JPG" width="171px" alt="pic8">
 
 The last completed step was the creation of a first PCB prototype, shown on the images, that's fully functional as a tuner.
 Currently the work is focused on improving the display software capabilities to ensure it's easily readable.
