@@ -16,6 +16,7 @@ The work has three main parts:
 * A hardware implementation (i.e. the pedal itself). The firmware for the device is stored in the `Polytuna Teensy Edition` folder. The schematics can be found in the [Thesis document](https://github.com/UC3Music/PolyTuna/raw/master/Memoria.pdf). The full circuit and the PCB KiCad project can be found at [`Polytuna KiCad`](https://github.com/UC3Music/PolyTuna/tree/master/Polytuna%20KiCad) folder.
 
 Some pictures of the prototype:
+(HD images can be found [`here`](https://github.com/UC3Music/PolyTuna/tree/master/doc/img/Polytuna%20PCB%20v1%20photos/HD))
 <img src="doc/img/Polytuna PCB v1 photos/Polytuna_01.JPG" alt="pic1">
 <img src="doc/img/Polytuna PCB v1 photos/Polytuna_02.JPG" width="434x" alt="pic2">
 <img src="doc/img/Polytuna PCB v1 photos/Polytuna_03.JPG" width="434px" alt="pic3">
