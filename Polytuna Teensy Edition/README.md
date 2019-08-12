@@ -1,4 +1,4 @@
-Hardware implementation of the Polytuna pedal. The schematics can be found in the [Thesis document](https://github.com/UC3Music/PolyTuna/raw/master/Memoria.pdf). Schematics can be found on the [PolyTuna KiCad folder](https://github.com/UC3Music/PolyTuna/tree/master/Polytuna%20KiCad)
+Hardware implementation of the Polytuna pedal. A simple version of the schematics can be found in the [Thesis document](https://github.com/UC3Music/PolyTuna/raw/master/Memoria.pdf) and the PCB-ready version can be found on the [PolyTuna KiCad folder](https://github.com/UC3Music/PolyTuna/tree/master/Polytuna%20KiCad)
 
 This firmware requires both [Arduino](https://www.arduino.cc/) and the [Teensyduino add-on](https://www.pjrc.com/teensy/teensyduino.html).
 
