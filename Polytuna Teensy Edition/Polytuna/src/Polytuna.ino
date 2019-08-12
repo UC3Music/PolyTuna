@@ -9,20 +9,19 @@
 LiquidCrystal_I2C lcd(0x3F, 20, 4); //
 
 // GUItool: begin automatically generated code
-AudioInputI2S            i2s1;           //xy=125,201
-AudioMixer4              mixer1;         //xy=335,317
-AudioOutputI2S           i2s2;           //xy=336,150
-AudioAnalyzePeak         peak1;          //xy=511,360
-AudioAnalyzeFFT1024      fft1024;      //xy=522,256
-AudioConnection          patchCord1(i2s1, 0, i2s2, 0);
-AudioConnection          patchCord2(i2s1, 0, mixer1, 0);
-AudioConnection          patchCord3(i2s1, 1, i2s2, 1);
-AudioConnection          patchCord4(i2s1, 1, mixer1, 1);
-AudioConnection          patchCord5(mixer1, fft1024);
-AudioConnection          patchCord6(mixer1, peak1);
-AudioControlSGTL5000     sgtl5000_1;     //xy=302,425
+AudioInputI2S i2s1;          //xy=125,201
+AudioMixer4 mixer1;          //xy=335,317
+AudioOutputI2S i2s2;         //xy=336,150
+AudioAnalyzePeak peak1;      //xy=511,360
+AudioAnalyzeFFT1024 fft1024; //xy=522,256
+AudioConnection patchCord1(i2s1, 0, i2s2, 0);
+AudioConnection patchCord2(i2s1, 0, mixer1, 0);
+AudioConnection patchCord3(i2s1, 1, i2s2, 1);
+AudioConnection patchCord4(i2s1, 1, mixer1, 1);
+AudioConnection patchCord5(mixer1, fft1024);
+AudioConnection patchCord6(mixer1, peak1);
+AudioControlSGTL5000 sgtl5000_1; //xy=302,425
 // GUItool: end automatically generated code
-
 
 //Global Variables
 float Resolution = 7.7917220745;
@@ -67,9 +66,8 @@ float E_REF_LOW = 82.6539;
 float E_REF_HIGH = 82.7871;
 
 float REFS_LOW_HIGH[2][6] = {
-  {E_REF_LOW, A_REF_LOW, D_REF_LOW, G_REF_LOW, B_REF_LOW, HE_REF_LOW},
-  {E_REF_HIGH, A_REF_HIGH, D_REF_HIGH, G_REF_HIGH, B_REF_HIGH, HE_REF_HIGH}
-};
+    {E_REF_LOW, A_REF_LOW, D_REF_LOW, G_REF_LOW, B_REF_LOW, HE_REF_LOW},
+    {E_REF_HIGH, A_REF_HIGH, D_REF_HIGH, G_REF_HIGH, B_REF_HIGH, HE_REF_HIGH}};
 
 //multiplicadores de notas
 float UP_TONE = 1.0595;
@@ -81,96 +79,97 @@ float DOWN_20_CENT = 0.9885;
 float DOWN_50_CENT = 0.9715;
 
 byte high_far_arrow[8] = {
-  B10001,
-  B01010,
-  B00100,
-  B10001,
-  B01010,
-  B00100,
-  B00000,
-  B00000,
+    B10001,
+    B01010,
+    B00100,
+    B10001,
+    B01010,
+    B00100,
+    B00000,
+    B00000,
 };
 byte high_middle_arrow[8] = {
-  B00000,
-  B00000,
-  B00000,
-  B10001,
-  B01010,
-  B00100,
-  B00000,
-  B00000,
+    B00000,
+    B00000,
+    B00000,
+    B10001,
+    B01010,
+    B00100,
+    B00000,
+    B00000,
 };
 byte high_almost_arrow[8] = {
-  B00000,
-  B00000,
-  B00000,
-  B00000,
-  B00000,
-  B10001,
-  B01010,
-  B00100,
+    B00000,
+    B00000,
+    B00000,
+    B00000,
+    B00000,
+    B10001,
+    B01010,
+    B00100,
 };
 byte mid_bar[8] = {
-  B00000,
-  B00000,
-  B00000,
-  B11111,
-  B11111,
-  B00000,
-  B00000,
-  B00000,
+    B00000,
+    B00000,
+    B00000,
+    B11111,
+    B11111,
+    B00000,
+    B00000,
+    B00000,
 };
 byte just_right[8] = {
-  B00000,
-  B10001,
-  B01010,
-  B00100,
-  B00100,
-  B01010,
-  B10001,
-  B00000,
+    B00000,
+    B10001,
+    B01010,
+    B00100,
+    B00100,
+    B01010,
+    B10001,
+    B00000,
 };
 byte low_far_arrow[8] = {
-  B00000,
-  B00000,
-  B00100,
-  B01010,
-  B10001,
-  B00100,
-  B01010,
-  B10001,
+    B00000,
+    B00000,
+    B00100,
+    B01010,
+    B10001,
+    B00100,
+    B01010,
+    B10001,
 };
 byte low_middle_arrow[8] = {
-  B00000,
-  B00000,
-  B00100,
-  B01010,
-  B10001,
-  B00000,
-  B00000,
-  B00000,
+    B00000,
+    B00000,
+    B00100,
+    B01010,
+    B10001,
+    B00000,
+    B00000,
+    B00000,
 };
 byte low_almost_arrow[8] = {
-  B00100,
-  B01010,
-  B10001,
-  B00000,
-  B00000,
-  B00000,
-  B00000,
-  B00000,
+    B00100,
+    B01010,
+    B10001,
+    B00000,
+    B00000,
+    B00000,
+    B00000,
+    B00000,
 };
 
-float interpolate(float x0, float x1, float x2, float b0, float b1, float b2) {
+float interpolate(float x0, float x1, float x2, float b0, float b1, float b2)
+{
   //interpolacion cuadratica por el metodo de lagrange
   /* Se espera que las x0, x1 y x2 sean los bins, no los valores de frecuencia. Por tanto la variable xMax es un valor de un bin intermedio.
     //Ejemplo: recibe los bins 6, 7 y 8. Se calcularian sampleN valores entre 6 y 8 y se calcularia el maximo (supongamos, en 6.87).
     //para hallar la frecuencia real hay que multiplicar la salida por la resolución del sistema (Resolution)
   */
   //saco estos cocientes constantes fuera para evitar que se realicen todo el rato
-  float a0 = b0 / ( (x0 - x1) * (x0 - x2) );
-  float a1 = b1 / ( (x1 - x0) * (x1 - x2) );
-  float a2 = b2 / ( (x2 - x0) * (x2 - x1) );
+  float a0 = b0 / ((x0 - x1) * (x0 - x2));
+  float a1 = b1 / ((x1 - x0) * (x1 - x2));
+  float a2 = b2 / ((x2 - x0) * (x2 - x1));
 
   //defino el numero de muestras intermedias
   int sampleN = 200; //probar valores. A mayor sea, mejor precisión pero peor rendimiento
@@ -178,7 +177,8 @@ float interpolate(float x0, float x1, float x2, float b0, float b1, float b2) {
   //resolucion tras interpolar = 2xResolution /sampleN = 0.004870
   float xMax = 0.00;
   float pxMax = 0.00;
-  for (int i = 0; i < sampleN; i++) {
+  for (int i = 0; i < sampleN; i++)
+  {
 
     float x = x0 + ((x2 - x0) * i / sampleN); //calculamos valores entre esos bins
 
@@ -189,7 +189,8 @@ float interpolate(float x0, float x1, float x2, float b0, float b1, float b2) {
 
     float px = y1 * y2 * a0 + y0 * y2 * a1 + y0 * y1 * a2;
 
-    if (px > pxMax) {
+    if (px > pxMax)
+    {
       xMax = x;
       pxMax = px;
     }
@@ -198,25 +199,28 @@ float interpolate(float x0, float x1, float x2, float b0, float b1, float b2) {
   return (xMax * Resolution); //Devolvemos el valor de frecuencia directamente, no el bin
 }
 
-float getPeak(int centralBin) {
+float getPeak(int centralBin)
+{
   float peakLevel = fft1024.read(centralBin) * 100.0;
   /////////////////SOLO PARA SERIAL
 
-  if (centralBin < 15) {
+  if (centralBin < 15)
+  {
     Serial.print(peakLevel, 3);
     Serial.print("  ");
   }
 
   ////////////////////
-  if (peakLevel >= fft1024.read(centralBin - 1)) {
-    if (peakLevel >= fft1024.read(centralBin + 1)) {
-      return peakLevel;
-    }
+  if (peakLevel >= fft1024.read(centralBin - 1) &&
+      peakLevel >= fft1024.read(centralBin + 1))
+  {
+    return peakLevel;
   }
   return 0;
 }
 
-void static_display() {
+void static_display()
+{
   //imprimir layout basico
   lcd.setCursor(1, 3);
   lcd.print("6E 5A 4D  3G 2B 1e");
@@ -243,19 +247,21 @@ void static_display() {
   lcd.print(" ");
   lcd.print(" ");
   lcd.write(60);
-
 }
 
-void tuning_print(float freq_peaks[]) {
+void tuning_print(float freq_peaks[])
+{
   //j controla la posicion a escribir
   int k = 1;
 
-  for (int i = 0; i < 6; i++) {
+  for (int i = 0; i < 6; i++)
+  {
     //calculamos los intervalos para las representaciones
     float ref_up_20 = REFS[i] * UP_50_CENT;
     float ref_down_20 = REFS[i] * DOWN_50_CENT;
     //si es menor del tono referencia por mas de 20 cents
-    if (freq_peaks[i] < ref_down_20) {
+    if (freq_peaks[i] < ref_down_20)
+    {
       lcd.setCursor(k, 0);
       lcd.print("  ");
       lcd.setCursor(k, 1);
@@ -265,7 +271,8 @@ void tuning_print(float freq_peaks[]) {
       lcd.write(byte(4));
     }
     //si está entre 20 cents y la referencia
-    else if (freq_peaks[i] < REFS[i]) {
+    else if (freq_peaks[i] < REFS[i])
+    {
 
       lcd.setCursor(k, 0);
       lcd.print("  ");
@@ -276,7 +283,8 @@ void tuning_print(float freq_peaks[]) {
       lcd.write(byte(3));
     }
     //si es igual a la referencia
-    else if ((freq_peaks[i] >= REFS_LOW_HIGH[0][i]) && (freq_peaks[i] <= REFS_LOW_HIGH[1][i])) {
+    else if ((freq_peaks[i] >= REFS_LOW_HIGH[0][i]) && (freq_peaks[i] <= REFS_LOW_HIGH[1][i]))
+    {
       lcd.setCursor(k, 0);
       lcd.print("  ");
       lcd.setCursor(k, 2);
@@ -286,7 +294,8 @@ void tuning_print(float freq_peaks[]) {
       lcd.write(2);
     }
     //si es mayor que la referencia +20
-    else if (freq_peaks[i] > ref_up_20) {
+    else if (freq_peaks[i] > ref_up_20)
+    {
       lcd.setCursor(k, 1);
       lcd.print("  ");
       lcd.setCursor(k, 2);
@@ -294,11 +303,11 @@ void tuning_print(float freq_peaks[]) {
       lcd.setCursor(k, 0);
       lcd.write(byte(0));
       lcd.write(byte(0));
-
     }
 
     //si esta entre la referencia y la referencia +20
-    else if (freq_peaks[i] < ref_up_20) {
+    else if (freq_peaks[i] < ref_up_20)
+    {
       lcd.setCursor(k, 1);
       lcd.print("  ");
       lcd.setCursor(k, 2);
@@ -308,7 +317,8 @@ void tuning_print(float freq_peaks[]) {
       lcd.write(byte(1));
     }
     //salvamos el espacio extra de enmedio
-    if (k == 7) {
+    if (k == 7)
+    {
       k++;
     }
     //escribimos en la siguiente posicion
@@ -316,7 +326,8 @@ void tuning_print(float freq_peaks[]) {
   }
 }
 
-void setup() {
+void setup()
+{
   // put your setup code here, to run once:
   Serial.begin(9600);
   Serial.println("Testing the circuit");
@@ -326,11 +337,10 @@ void setup() {
   sgtl5000_1.inputSelect(AUDIO_INPUT_LINEIN);
   AudioMemory(15);
   sgtl5000_1.volume(0.5);
-  mixer1.gain(0, 0.5);//habria que ver a que canal se conecta
+  mixer1.gain(0, 0.5); //habria que ver a que canal se conecta
   mixer1.gain(1, 0.5);
   //delay porque si
   delay(500);
-
 
   // Configuracion del LCD
 
@@ -356,9 +366,11 @@ void setup() {
   delay(500);
 }
 
-void loop() {
+void loop()
+{
 
-  if (fft1024.available()) {
+  if (fft1024.available())
+  {
     E_peak_lvl = 0.0;
     A_peak_lvl = 0.0;
     D_peak_lvl = 0.0;
@@ -380,25 +392,31 @@ void loop() {
     */
     //////////////////// BUSCAR PICO EN CADA INTERVALO DE BUSQUEDA //////////
     //// E string
-    for (centralBin = 9; centralBin <= 12; centralBin++) { //central bin entre: 7.79*3 = 23.37 y 7.79*12 = 93.48
+    for (centralBin = 9; centralBin <= 12; centralBin++)
+    { //central bin entre: 7.79*3 = 23.37 y 7.79*12 = 93.48
       float aux_peak_lvl = fft1024.read(centralBin);
-      if (aux_peak_lvl > E_peak_lvl) {
+      if (aux_peak_lvl > E_peak_lvl)
+      {
         E_peak_lvl = aux_peak_lvl;
         E_peak = centralBin;
       }
     }
     //// A string
-    for (centralBin = 12; centralBin <= 16; centralBin++) { //central bin entre: 7.79*12 = 93.48 y 7.79*17 = 124
+    for (centralBin = 12; centralBin <= 16; centralBin++)
+    { //central bin entre: 7.79*12 = 93.48 y 7.79*17 = 124
       float aux_peak_lvl = fft1024.read(centralBin);
-      if (aux_peak_lvl > A_peak_lvl) {
+      if (aux_peak_lvl > A_peak_lvl)
+      {
         A_peak_lvl = aux_peak_lvl;
         A_peak = centralBin;
       }
     }
     //// D string
-    for (centralBin = 16; centralBin <= 20; centralBin++) { //central bin entre: 124 y 155.8
+    for (centralBin = 16; centralBin <= 20; centralBin++)
+    { //central bin entre: 124 y 155.8
       float aux_peak_lvl = fft1024.read(centralBin);
-      if (aux_peak_lvl > D_peak_lvl) {
+      if (aux_peak_lvl > D_peak_lvl)
+      {
         D_peak_lvl = aux_peak_lvl;
         D_peak = centralBin;
       }
@@ -407,32 +425,37 @@ void loop() {
     //dejo un margen de 2 bins (15 Hz) entre estas por los armonicos tan altos que tiene la guitarra aqui
 
     //// G string
-    for (centralBin = 22; centralBin <= 27; centralBin++) { //central bin entre: 171.3 y 210.33
+    for (centralBin = 22; centralBin <= 27; centralBin++)
+    { //central bin entre: 171.3 y 210.33
       float aux_peak_lvl = fft1024.read(centralBin);
-      if (aux_peak_lvl > G_peak_lvl) {
+      if (aux_peak_lvl > G_peak_lvl)
+      {
         G_peak_lvl = aux_peak_lvl;
         G_peak = centralBin;
       }
     }
     //estas dos cuerdas tienen suficientes bins para poder solaparse los rangos de busqueda
     //// B string
-    for (centralBin = 89; centralBin <= 110; centralBin++) { //central bin entre: 218.12 y 303.81
+    for (centralBin = 89; centralBin <= 110; centralBin++)
+    { //central bin entre: 218.12 y 303.81
       float aux_peak_lvl = fft1024.read(centralBin);
-      if (aux_peak_lvl > B_peak_lvl) {
+      if (aux_peak_lvl > B_peak_lvl)
+      {
         B_peak_lvl = aux_peak_lvl;
         B_peak = centralBin;
       }
     }
     //// he string
-    for (centralBin = 110; centralBin <= 146; centralBin++) { //central bin entre: 280 y 428.45
+    for (centralBin = 110; centralBin <= 146; centralBin++)
+    { //central bin entre: 280 y 428.45
       float aux_peak_lvl = fft1024.read(centralBin);
-      if (aux_peak_lvl > he_peak_lvl) {
+      if (aux_peak_lvl > he_peak_lvl)
+      {
         he_peak_lvl = aux_peak_lvl;
         he_peak = centralBin;
       }
     }
     ///////////////////
-
 
     /////////////////////////// INTERPOLATE ///////////////////////
     //A partir de los bins máximos en cada rango, obtengo el pico por interpolacion
@@ -449,7 +472,7 @@ void loop() {
     //// he string
     float he_freq_peak = interpolate(he_peak - 1, he_peak, he_peak + 1, fft1024.read(he_peak - 1), fft1024.read(he_peak), fft1024.read(he_peak + 1));
 
-    float freq_peaks_detected [] = {E_freq_peak, A_freq_peak, D_freq_peak, G_freq_peak, B_freq_peak, he_freq_peak};
+    float freq_peaks_detected[] = {E_freq_peak, A_freq_peak, D_freq_peak, G_freq_peak, B_freq_peak, he_freq_peak};
 
     //////////////////////////// PRINTING VALUES TO SERIAL PORT
     Serial.print(" E -> ");
@@ -469,6 +492,3 @@ void loop() {
     delay(50);
   }
 }
-
-
-

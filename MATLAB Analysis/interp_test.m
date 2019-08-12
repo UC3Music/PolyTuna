@@ -4,6 +4,7 @@ clc
 
 freq = 81.5:0.01:82.5;
 peak_sum=zeros(1,length(freq));
+
 for i=1:length(freq)
 amp=1; 
 fs=44100;  % sampling frequency
@@ -20,7 +21,7 @@ fft1 = abs(fft(a,fs-1))/fs*2;
 
 axis([70 100 0 1])
 
-p = polyfit(81:83,fft1(82:84),2);
+p = polyfit(80:84,fft1(81:85),2);
 
 res = 0.001;
 x = 79:res:85;
@@ -34,4 +35,4 @@ interp = polyval(p,x);
 peak_sum(i) = 79+(peak-1)*res;
 end
 
-plot(peak_sum,1:length(peak_sum))
+plot(peak_sum,1:length(peak_sum)) %Peak deviation for the different values
