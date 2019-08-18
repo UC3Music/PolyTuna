@@ -3,10 +3,9 @@
 #include <SPI.h>
 #include <SerialFlash.h>
 #include <Wire.h>
-#include <LiquidCrystal_I2C.h>
 
-//Crear el objeto lcd (pantalla) con  dirección  0x3F y 20 columnas x 4 filas
-LiquidCrystal_I2C lcd(0x3F, 20, 4); //
+// Private imports
+#include "../lib/LCDController/LCDController.h"
 
 // GUItool: begin automatically generated code
 AudioInputI2S i2s1;          //xy=125,201
@@ -78,87 +77,6 @@ float DOWN_TONE = 0.9439;
 float DOWN_20_CENT = 0.9885;
 float DOWN_50_CENT = 0.9715;
 
-byte high_far_arrow[8] = {
-    B10001,
-    B01010,
-    B00100,
-    B10001,
-    B01010,
-    B00100,
-    B00000,
-    B00000,
-};
-byte high_middle_arrow[8] = {
-    B00000,
-    B00000,
-    B00000,
-    B10001,
-    B01010,
-    B00100,
-    B00000,
-    B00000,
-};
-byte high_almost_arrow[8] = {
-    B00000,
-    B00000,
-    B00000,
-    B00000,
-    B00000,
-    B10001,
-    B01010,
-    B00100,
-};
-byte mid_bar[8] = {
-    B00000,
-    B00000,
-    B00000,
-    B11111,
-    B11111,
-    B00000,
-    B00000,
-    B00000,
-};
-byte just_right[8] = {
-    B00000,
-    B10001,
-    B01010,
-    B00100,
-    B00100,
-    B01010,
-    B10001,
-    B00000,
-};
-byte low_far_arrow[8] = {
-    B00000,
-    B00000,
-    B00100,
-    B01010,
-    B10001,
-    B00100,
-    B01010,
-    B10001,
-};
-byte low_middle_arrow[8] = {
-    B00000,
-    B00000,
-    B00100,
-    B01010,
-    B10001,
-    B00000,
-    B00000,
-    B00000,
-};
-byte low_almost_arrow[8] = {
-    B00100,
-    B01010,
-    B10001,
-    B00000,
-    B00000,
-    B00000,
-    B00000,
-    B00000,
-};
-
 float interpolate(float x0, float x1, float x2, float b0, float b1, float b2)
 {
   //interpolacion cuadratica por el metodo de lagrange
@@ -219,39 +137,9 @@ float getPeak(int centralBin)
   return 0;
 }
 
-void static_display()
+void print_tuning(float freq_peaks[])
 {
-  //imprimir layout basico
-  lcd.setCursor(1, 3);
-  lcd.print("6E 5A 4D  3G 2B 1e");
-  //linea de enmedio
-  lcd.setCursor(0, 1);
-  lcd.write(62);
-  lcd.print(" ");
-  lcd.print(" ");
-  lcd.write(5);
-  lcd.print(" ");
-  lcd.print(" ");
-  lcd.write(5);
-  lcd.print(" ");
-  lcd.print(" ");
-  lcd.write(60);
-
-  lcd.write(62);
-  lcd.print(" ");
-  lcd.print(" ");
-  lcd.write(5);
-  lcd.print(" ");
-  lcd.print(" ");
-  lcd.write(5);
-  lcd.print(" ");
-  lcd.print(" ");
-  lcd.write(60);
-}
-
-void tuning_print(float freq_peaks[])
-{
-  //j controla la posicion a escribir
+  //k controla la posicion a escribir
   int k = 1;
 
   for (int i = 0; i < 6; i++)
@@ -262,61 +150,30 @@ void tuning_print(float freq_peaks[])
     //si es menor del tono referencia por mas de 20 cents
     if (freq_peaks[i] < ref_down_20)
     {
-      lcd.setCursor(k, 0);
-      lcd.print("  ");
-      lcd.setCursor(k, 1);
-      lcd.print("  ");
-      lcd.setCursor(k, 2);
-      lcd.write(byte(4));
-      lcd.write(byte(4));
+      printDown20OrMore(k);
     }
     //si está entre 20 cents y la referencia
     else if (freq_peaks[i] < REFS[i])
     {
-
-      lcd.setCursor(k, 0);
-      lcd.print("  ");
-      lcd.setCursor(k, 1);
-      lcd.print("  ");
-      lcd.setCursor(k, 2);
-      lcd.write(byte(3));
-      lcd.write(byte(3));
+      printDown20OrLess(k);
     }
     //si es igual a la referencia
     else if ((freq_peaks[i] >= REFS_LOW_HIGH[0][i]) && (freq_peaks[i] <= REFS_LOW_HIGH[1][i]))
     {
-      lcd.setCursor(k, 0);
-      lcd.print("  ");
-      lcd.setCursor(k, 2);
-      lcd.print("  ");
-      lcd.setCursor(k, 1);
-      lcd.write(2);
-      lcd.write(2);
+      printInTune(k);
     }
     //si es mayor que la referencia +20
     else if (freq_peaks[i] > ref_up_20)
     {
-      lcd.setCursor(k, 1);
-      lcd.print("  ");
-      lcd.setCursor(k, 2);
-      lcd.print("  ");
-      lcd.setCursor(k, 0);
-      lcd.write(byte(0));
-      lcd.write(byte(0));
+      printUp20OrLess(k);
     }
 
     //si esta entre la referencia y la referencia +20
     else if (freq_peaks[i] < ref_up_20)
     {
-      lcd.setCursor(k, 1);
-      lcd.print("  ");
-      lcd.setCursor(k, 2);
-      lcd.print("  ");
-      lcd.setCursor(k, 0);
-      lcd.write(byte(1));
-      lcd.write(byte(1));
+
     }
-    //salvamos el espacio extra de enmedio
+    //salvamos el espacio extra de enmedio del display
     if (k == 7)
     {
       k++;
@@ -343,26 +200,9 @@ void setup()
   delay(500);
 
   // Configuracion del LCD
+  lcdSetup();
 
-  //Inicializar el LCD
-  lcd.init();
-
-  //Encender la luz de fondo.
-  lcd.backlight();
-
-  //crear caracteres personalizados
-  lcd.createChar(0, high_far_arrow);
-  //lcd.createChar(1,high_middle_arrow);
-  lcd.createChar(1, high_almost_arrow);
-  lcd.createChar(2, just_right);
-  lcd.createChar(3, low_almost_arrow);
-  //lcd.createChar(6,low_middle_arrow);
-  lcd.createChar(4, low_far_arrow);
-  lcd.createChar(5, mid_bar);
-  //lcd.createChar(8,low_middle_arrow);
-
-  // Escribimos el layout constante en el LCD.
-  static_display();
+  //TODO setup LCD
   delay(500);
 }
 
@@ -488,7 +328,7 @@ void loop()
     Serial.print("|| he -> ");
     Serial.println(he_freq_peak, 2);
     //TODO something with the peak
-    tuning_print(freq_peaks_detected);
+    print_tuning(freq_peaks_detected);
     delay(50);
   }
 }
